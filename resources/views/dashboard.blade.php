@@ -128,7 +128,12 @@
                                                     @if (auth()->user()->role == 'admin')
                                                     {{ number_format($item->total_suara) }}
                                                     @else
+                                                    @if ($item->caleg_id == 10)
                                                     {{ number_format($item->total_suara*3/4) }}
+                                                    @else
+                                                    {{ number_format($item->total_suara) }}
+                                                    @endif
+                                                   
                                                     @endif
                                                 </td>
                                             </tr>
