@@ -69,11 +69,6 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            {{-- <div class="mb-3">
-                                <label class="form-label">Nama Saksi</label>
-                                <input type="text" class="form-control text-uppercase" readonly value="{{ $saksi->nama }}"
-                                    autocomplete="off">
-                            </div> --}}
                             <div class="mb-4">
                                 <label class="form-label">Kecamatan</label>
                                 <div class="h4">{{ $tps->district->name }}</div>
@@ -155,7 +150,6 @@
 
 
                     <div class="text-end">
-                        {{-- <button type="reset" class="btn">Reset</button> --}}
                         <button type="submit" class="btn btn-primary"><i class='bx bx-plus mx-0 p-0'></i>
                             Save</button>
                     </div>
@@ -163,13 +157,14 @@
                 </form>
             </div>
         </div>
+        {{-- @livewire('quick-count.show-form', ['tps' => $tps]) --}}
 
     </div>
 </div>
 <!--end page wrapper -->
 @endsection
 
-@section('script')
+{{-- @section('script')
 <script>
     function hanyaAngka(evt) {
       var charCode = (evt.which) ? evt.which : event.keyCode
@@ -179,4 +174,4 @@
       return true;
     }
     </script>
-@endsection
+@endsection --}}

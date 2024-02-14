@@ -63,6 +63,7 @@ class UploadC1Controller extends Controller
 
         // $data['saksi'] = $saksi;
         $data['tps'] = $tps;
+        $data['tps']['status'] = $status;
         $data['parpol'] = Parpol::get();
         $data['caleg'] = Caleg::where('status', $status)->get();
         return view('quick-count.form', $data);
@@ -245,6 +246,6 @@ class UploadC1Controller extends Controller
         }
 
         toast('Data berhasil disimpan!', 'success');
-        return redirect('upload-c1/saksi/show/');
+        return redirect('upload-c1/saksi/show?village_id='.$tps->village_id);
     }
 }
