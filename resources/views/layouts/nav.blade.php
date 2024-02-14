@@ -17,7 +17,7 @@
 
         </li>
 
-        @canany(['admin'])
+        @canany(['admin','tim_data'])
         <li class="menu-label">Data</li>
         <li>
             <a href="javascript:;" class="has-arrow">
