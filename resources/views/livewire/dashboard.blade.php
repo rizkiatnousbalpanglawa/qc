@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.1s>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     {{-- <div class="row"> --}}
         {{-- <div class="col-lg-12">

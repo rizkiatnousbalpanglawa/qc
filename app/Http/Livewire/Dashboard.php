@@ -17,11 +17,10 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
-    // public
 
     public function render()
     {
-        // $pemilih =  TpsPemilih::get();
+       
         $data['jumlahTps_dpr'] = UploadC1::where('status','1')->count('tps_id');
         $data['jumlahTps_dprd'] = UploadC1::where('status','2')->count('tps_id');
         $data['totalTps'] = Tps::count('id');
@@ -81,4 +80,5 @@ class Dashboard extends Component
 
         return view('livewire.dashboard', $data);
     }
+
 }

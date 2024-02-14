@@ -63,7 +63,7 @@ class UploadC1Controller extends Controller
 
         // $data['saksi'] = $saksi;
         $data['tps'] = $tps;
-        $data['tps']['status'] = $status;
+        $data['tps']->status_caleg = $status;
         $data['parpol'] = Parpol::get();
         $data['caleg'] = Caleg::where('status', $status)->get();
         return view('quick-count.form', $data);

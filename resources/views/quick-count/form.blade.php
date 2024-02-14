@@ -157,7 +157,7 @@
                 </form>
             </div>
         </div>
-        {{-- @livewire('quick-count.show-form', ['tps' => $tps]) --}}
+      
 
     </div>
 </div>
