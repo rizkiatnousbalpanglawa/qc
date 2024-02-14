@@ -113,7 +113,6 @@ class UploadC1Controller extends Controller
             return back();
         }
 
-
         try {
             $caleg = Caleg::where('status', $status)->get();
             foreach ($caleg as $value) {
@@ -154,6 +153,7 @@ class UploadC1Controller extends Controller
             return back();
         }
 
+        toast('Data berhasil disimpan!', 'success');
         return redirect('upload-c1/saksi/show/');
     }
 }
