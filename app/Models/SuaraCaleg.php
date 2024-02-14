@@ -20,4 +20,9 @@ class SuaraCaleg extends Model
     {
         return $this->belongsTo(Village::class,'village_id');
     }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class,'district_id');
+    }
 }

@@ -44,24 +44,13 @@ class Dashboard extends Component
             ->get();
         $data['realisasi_yrk'] = SuaraCaleg::where('caleg_id', 10)->sum('jumlah_suara');
         $data['realisasi_partai_yrk'] = SuaraParpol::where('status', 2)->sum('jumlah_suara');
-        // $data['total_pendukung'] = TpsPemilih::count();
-        // $pemilihEsr = Pilihan::where('pilihan','E')->distinct('tps_pemilih_id')->count();
-        // $pemilihYrk = Pilihan::where('pilihan', 'Y')->distinct('tps_pemilih_id')->count();
-        // $pemilihPaket = Pilihan::where('pilihan', 'P')->distinct('tps_pemilih_id')->count();
+     
 
-        // $data['pemilih_esr'] = $pemilihEsr;
-        // $data['pemilih_yrk'] = $pemilihYrk;
-        // $data['pemilih_paket'] = $pemilihPaket;
 
         $data['total_tps'] = Tps::count();
         $data['total_kel'] = Tps::select('village_id')->distinct('village_id')->count();
         $data['total_kec'] = Tps::select('district_id')->distinct('district_id')->count();
         $data['total_kab'] = Tps::select('regency_id')->distinct('regency_id')->count();
-
-        // $data['pemilih_kip'] = Status::where('status', 'K')->distinct('tps_pemilih_id')->count();
-        // $data['pemilih_pip'] = Status::where('status', 'P')->distinct('tps_pemilih_id')->count();
-        // $data['pemilih_lainnya'] = Status::where('status', 'L')->distinct('tps_pemilih_id')->count();
-        // $data['pemilih_kp'] = Status::where('status', 'PK')->distinct('tps_pemilih_id')->count();
 
         $data['jumlahTpsRealisasi'] = UploadC1::distinct('tps_id')->count();
         $data['jumlahKelRealisasi'] = UploadC1::distinct('village_id')->count();
@@ -74,6 +63,18 @@ class Dashboard extends Component
         ->with(['village'])
         ->where('caleg_id','3')
         ->groupBy('village_id')
+        ->paginate('10');
+
+        $data['kecTerbanyak'] = SuaraCaleg::select('district_id',DB::raw('SUM(jumlah_suara) as jumlah_suara'))
+        ->with(['district'])
+        ->where('caleg_id','3')
+        ->groupBy('district_id')
+        ->paginate('10');
+
+        $data['kecTerbanyak_dprd'] = SuaraCaleg::select('district_id',DB::raw('SUM(jumlah_suara) as jumlah_suara'))
+        ->with(['district'])
+        ->where('caleg_id','10')
+        ->groupBy('district_id')
         ->paginate('10');
 
         return view('livewire.dashboard', $data);

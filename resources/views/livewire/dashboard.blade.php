@@ -87,7 +87,7 @@
                 <div class="card-body">
                     <div class="">
                         <span class="h6 border-5 border-start ps-1 border-warning">DPR RI SUL-SEL 3</span>
-                        <span class="float-end fst-italic">Data Masuk {{ $jumlahTps_dpr }} dari {{ $totalTps }} TPS</span>
+                        <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span></span>
                     </div>
                     <hr>
                     <div class="row">
@@ -149,7 +149,8 @@
                 <div class="card-body">
                     <div class="">
                         <span class="h6 border-5 border-start ps-1 border-primary">DPRD PROVINSI SUL-SEL 10</span>
-                        <span class="float-end fst-italic">Data Masuk {{ $jumlahTps_dprd }} dari {{ $totalTps }} TPS</span>
+                        <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dprd / $totalTps * 100,2) }}%</span></span>
+
                     </div>
                     <hr>
                     <div class="row">
@@ -212,8 +213,34 @@
         <div class="col-lg-6">
             <div class="card radius-10">
                 <div class="card-body">
+                    <div class="">
+                        <span class="h6 border-5 border-start ps-1 border-warning">PEMILIH BERDASARKAN KECAMATAN</span>
+                    </div>
+                    <hr class="my-1">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kecamatan</th>
+                                <th>Total Suara</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($kecTerbanyak as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->district->name }}</td>
+                                <td>{{ $item->jumlah_suara }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center">Data Masih Kosong!!!</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
 
-                    <div id="container_esr" style="width:100%; height:250px;"></div>
+                    {{-- <div id="container_esr" style="width:100%; height:250px;"></div> --}}
 
                 </div>
             </div>
@@ -222,8 +249,34 @@
         <div class="col-lg-6">
             <div class="card radius-10">
                 <div class="card-body">
+                    <div class="">
+                        <span class="h6 border-5 border-start ps-1 border-primary">PEMILIH BERDASARKAN KECAMATAN</span>
+                    </div>
+                    <hr class="my-1">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kecamatan</th>
+                                <th>Total Suara</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($kecTerbanyak_dprd as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->district->name }}</td>
+                                <td>{{ $item->jumlah_suara }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center">Data Masih Kosong!!!</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
 
-                    <div id="container_yrk" style="width:100%; height:250px;"></div>
+                    {{-- <div id="container_yrk" style="width:100%; height:250px;"></div> --}}
 
                 </div>
             </div>
