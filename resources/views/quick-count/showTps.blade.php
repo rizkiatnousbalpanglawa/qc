@@ -90,7 +90,23 @@
                                         YRK
                                     </a>
                                     @else
-                                    -
+
+                                        @if (auth()->user()->role == 'admin')
+                                        <a href="{{ url('upload-c1/1/edit/'.$item->id) }}"
+                                            class="btn btn-warning btn-sm">
+                                           EDIT ESR
+                                        </a>
+                                        <a href="{{ url('upload-c1/2/edit/'.$item->id) }}"
+                                            class="btn btn-primary btn-sm">
+                                            EDIT YRK
+                                        </a>
+                                        @else
+                                            -
+                                        @endif
+                                   
+                                   
+                                     
+                                     
                                     @endif
 
                                 </td>

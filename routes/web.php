@@ -106,4 +106,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/upload-c1/saksi/show', [UploadC1Controller::class, 'showTps']);
     Route::get('/upload-c1/{status}/tps/{tps}', [UploadC1Controller::class, 'form']);
     Route::post('/upload-c1/{status}/tps/{tps}', [UploadC1Controller::class, 'store']);
+
+    Route::get('/upload-c1/{status}/update/{tps}', [UploadC1Controller::class, 'edit']);
+    Route::post('/upload-c1/{status}/update/{tps}', [UploadC1Controller::class, 'update']);
 });
