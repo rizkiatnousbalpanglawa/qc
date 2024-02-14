@@ -75,7 +75,7 @@
             </div>
         </div> --}}
     {{-- </div> --}}
-    <div class="row row-cols-1 row-cols-md-4 row-cols-xl-2">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
 
         <div class="col">
             <div class="card radius-10 small">
