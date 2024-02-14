@@ -89,7 +89,7 @@
                         <span class="h6 border-5 border-start ps-1 border-warning">DPR RI SUL-SEL 3</span>
                         <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span></span>
                     </div>
-                    <hr>
+                    <hr class="my-1">
                     <div class="row">
                         <div class="col-4">
                             <div class="text-center">
@@ -152,7 +152,7 @@
                         <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dprd / $totalTps * 100,2) }}%</span></span>
 
                     </div>
-                    <hr>
+                    <hr class="my-1">
                     <div class="row">
                         <div class="col-4">
                             <div class="text-center">
