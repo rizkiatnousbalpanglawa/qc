@@ -60,7 +60,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="float-end fst-italic">Diperbarui {{ $terahirUpdateDpr->created_at->diffForHumans() }}</div>
+                                {{-- <div class="float-end fst-italic">Diperbarui {{ $terahirUpdateDpr->created_at->diffForHumans() }}</div> --}}
                             </div>
                         </div>
                     </div>
@@ -114,21 +114,17 @@
                                             class="@if($item->caleg_id == 10) bg-primary text-white fw-bold @endif text-center">
                                             <td>{{ $item->caleg->nama }}</td>
                                             <td class="align-middle">
-                                                @can('admin')
+                                                @if (auth()->user()->role == 'admin')
                                                 {{ number_format($item->total_suara) }}
-                                                @elsecan('user')
-                                                @if ($item->caleg->id == 10)
-                                                {{ number_format($item->total_suara*3/4) }}
                                                 @else
-                                                {{ number_format($item->total_suara) }}
+                                                {{ number_format($item->total_suara*3/4) }}
                                                 @endif
-                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div class="float-end fst-italic small my-0">Diperbarui {{ $terahirUpdateDprd->created_at->diffForHumans() }}</div>
+                                {{-- <div class="float-end fst-italic small my-0">Diperbarui {{ $terahirUpdateDprd->created_at->diffForHumans() }}</div> --}}
 
                             </div>
                         </div>
