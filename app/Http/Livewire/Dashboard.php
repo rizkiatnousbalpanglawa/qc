@@ -17,6 +17,8 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    // public
+
     public function render()
     {
         // $pemilih =  TpsPemilih::get();
@@ -70,12 +72,7 @@ class Dashboard extends Component
         ->with(['village'])
         ->where('caleg_id','3')
         ->groupBy('village_id')
-        // ->orderBy('jumlah_tps_pemilih', 'desc')
         ->paginate('10');
-        // $data['kecamatanTerbanyak'] = Pilihan::select('district_id', \DB::raw('COUNT(DISTINCT tps_pemilih_id) as jumlah_tps_pemilih'))
-        // ->groupBy('district_id')
-        // ->orderBy('jumlah_tps_pemilih','desc')
-        // ->paginate('10');
 
         return view('livewire.dashboard', $data);
     }
