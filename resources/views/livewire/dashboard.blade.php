@@ -279,9 +279,9 @@
                                 <td>{{ $item->district->name }}</td>
                                 <td>
                                     @can('admin')
-                                    {{ number_format($item->total_suara) }}
+                                    {{ number_format($item->jumlah_suara) }}
                                     @elsecan('user')
-                                    {{ number_format($item->total_suara*3/4) }}
+                                    {{ number_format($item->jumlah_suara*3/4) }}
                                     @endcan
                                 </td>
                             </tr>
