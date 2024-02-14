@@ -70,14 +70,14 @@ class Dashboard extends Component
         ->where('caleg_id','3')
         ->groupBy('district_id')
         ->orderByDesc('jumlah_suara')
-        ->paginate('10');
+        ->paginate('8');
 
         $data['kecTerbanyak_dprd'] = SuaraCaleg::select('district_id',DB::raw('SUM(jumlah_suara) as jumlah_suara'))
         ->with(['district'])
         ->where('caleg_id','10')
         ->groupBy('district_id')
         ->orderByDesc('jumlah_suara')
-        ->paginate('10');
+        ->paginate('8');
 
         return view('livewire.dashboard', $data);
     }
