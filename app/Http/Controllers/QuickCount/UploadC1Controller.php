@@ -92,13 +92,13 @@ class UploadC1Controller extends Controller
         $form['jumlah_pemilih'] = $validated['jumlah_pemilih'];
 
         if ($request->has('lampiran_c1')) {
-            $form['lampiran_c1'] = $validated['lampiran_c1'];
+            $form['lampiran_c1'] = $request->file('lampiran_c1')->store('lampiran');
         }
         if ($request->has('lampiran_plano')) {
-            $form['lampiran_plano'] = $validated['lampiran_plano'];
+            $form['lampiran_plano'] = $request->file('lampiran_plano')->store('lampiran');
         }
         if ($request->has('lampiran_lokasi')) {
-            $form['lampiran_lokasi'] = $validated['lampiran_lokasi'];
+            $form['lampiran_lokasi'] = $request->file('lampiran_lokasi')->store('lampiran');
         }
 
         $cek = UploadC1::where('tps_id', $tps->id)->where('status', $status)->first();
