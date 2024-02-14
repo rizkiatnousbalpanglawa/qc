@@ -157,7 +157,7 @@ class UploadC1Controller extends Controller
         }
 
         toast('Data berhasil disimpan!', 'success');
-        return redirect('upload-c1/saksi/show/');
+        return redirect('upload-c1/saksi/show?village_id='.$tps->village_id);
     }
 
     public function store($status, Tps $tps, Request $request)

@@ -1,85 +1,5 @@
 <div wire:poll.1s>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    {{-- <div class="row"> --}}
-        {{-- <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-1">
-                        <div class="mb-0 text-center h5">DATA MASUK</div>
-                    </div>
-                    <hr>
-                    <table class="table table-sm">
-                        <thead>
-                            <tr>
-                                <th>KELURAHAN</th>
-                                <th>JUMLAH TPS</th>
-                                <th>DATA MASUK</th>
-                                <th>JUMLAH SUARA</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($kelTerbanyak as $item)
-                            <tr>
-                                <td>{{ $item->village->name }}</td>
-                                <td>{{ $item }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table> --}}
-
-                    {{-- <div class="row">
-                        <div class="col-lg-6">
-                            <table class="table table-borderless table-sm">
-                                <tr class="border-bottom">
-                                    <td class=" align-middle">Jumlah TPS</td>
-                                    <td class="align-middle text-center">
-                                        <span class="h5">{{ number_format($jumlahTpsRealisasi) }}</span>
-                                    </td>
-                                    <td class="text-center align-middle">dari {{ $total_tps }}</td>
-                                    <td class="text-center align-middle h5">{{ round($jumlahTpsRealisasi / $total_tps *
-                                        100) }}%</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <td class=" align-middle">Jumlah Kelurahan</td>
-                                    <td class="h5 align-middle text-center">{{
-                                        number_format($jumlahKelRealisasi) }}
-                                    </td>
-                                    <td class="text-center align-middle">dari {{ $total_kel }}</td>
-                                    <td class="text-center align-middle h5">{{ round($jumlahKelRealisasi / $total_kel *
-                                        100) }}%</td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <td class="align-middle">Jumlah Kecamatan</td>
-                                    <td class="h6 align-middle text-center">{{
-                                        number_format($jumlahKecRealisasi) }}
-                                    </td>
-                                    <td class="text-center align-middle">dari {{ $total_kec }}</td>
-                                    <td class="text-center align-middle h5">{{ round($jumlahKecRealisasi / $total_kec *
-                                        100) }}%</td>
-
-                                </tr>
-                                <tr class="border-bottom">
-                                    <td class="align-middle">Jumlah Kab/Kota</td>
-                                    <td class="h6 align-middle text-center">{{
-                                        number_format($jumlahKabRealisasi) }}
-                                    </td>
-                                    <td class="text-center align-middle">dari {{ $total_kab }}</td>
-                                    <td class="text-center align-middle h5">{{ round($jumlahKabRealisasi / $total_kab *
-                                        100) }}%</td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </div> --}}
-
-                    {{--
-                </div>
-            </div>
-        </div> --}}
-        {{-- </div> --}}
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
 
         <div class="col">
@@ -87,7 +7,7 @@
                 <div class="card-body">
                     <div class="">
                         <span class="h6 border-5 border-start ps-1 border-warning">DPR RI SUL-SEL 3</span>
-                        <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span></span>
+                        <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span> </span>
                     </div>
                     <hr class="my-1">
                     <div class="row">
@@ -140,6 +60,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="float-end fst-italic">Diperbarui {{ $terahirUpdateDpr->created_at->diffForHumans() }}</div>
                             </div>
                         </div>
                     </div>
@@ -207,6 +128,8 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="float-end fst-italic">Diperbarui {{ $terahirUpdateDprd->created_at->diffForHumans() }}</div>
+
                             </div>
                         </div>
                     </div>

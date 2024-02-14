@@ -14,6 +14,7 @@ use App\Models\UploadC1;
 use App\Models\Village;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class Dashboard extends Component
 {
@@ -22,7 +23,10 @@ class Dashboard extends Component
     {
        
         $data['jumlahTps_dpr'] = UploadC1::where('status','1')->count('tps_id');
+        $data['terahirUpdateDpr'] = UploadC1::where('status','1')->latest()->first();
         $data['jumlahTps_dprd'] = UploadC1::where('status','2')->count('tps_id');
+        $data['terahirUpdateDprd'] = UploadC1::where('status','2')->latest()->first();
+
         $data['totalTps'] = Tps::count('id');
         $data['caleg_dpr'] = Caleg::where('status', 1)->pluck('nama');
         $data['suara_caleg_dpr'] = SuaraCaleg::where('status', 1)
@@ -43,8 +47,6 @@ class Dashboard extends Component
             ->get();
         $data['realisasi_yrk'] = SuaraCaleg::where('caleg_id', 10)->sum('jumlah_suara');
         $data['realisasi_partai_yrk'] = SuaraParpol::where('status', 2)->sum('jumlah_suara');
-     
-
 
         $data['total_tps'] = Tps::count();
         $data['total_kel'] = Tps::select('village_id')->distinct('village_id')->count();
