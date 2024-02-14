@@ -51,7 +51,7 @@
                                 </tr>
                                 <tr class="border-bottom">
                                     <td class="align-middle">Jumlah Kecamatan</td>
-                                    <td class="h4 align-middle text-center">{{
+                                    <td class="h6 align-middle text-center">{{
                                         number_format($jumlahKecRealisasi) }}
                                     </td>
                                     <td class="text-center align-middle">dari {{ $total_kec }}</td>
@@ -60,7 +60,7 @@
                                 </tr>
                                 <tr class="border-bottom">
                                     <td class="align-middle">Jumlah Kab/Kota</td>
-                                    <td class="h4 align-middle text-center">{{
+                                    <td class="h6 align-middle text-center">{{
                                         number_format($jumlahKabRealisasi) }}
                                     </td>
                                     <td class="text-center align-middle">dari {{ $total_kab }}</td>
@@ -80,7 +80,7 @@
         <div class="col">
             <div class="card radius-10 small">
                 <div class="card-body">
-                    <div class="h5 text-center">DPR RI SUL-SEL 3</div>
+                    <div class="h6 text-center">DPR RI SUL-SEL 3</div>
                     <hr>
                     <div class="row">
                         <div class="col-4">
@@ -88,9 +88,9 @@
                                 <img src="{{ asset('assets/images/avatars/esr.jpeg') }}" class="img-fluid"
                                     style="width: 60px">
                                     <div class="mt-2 small">Target</div>
-                                    <div class="h4">60,000</div>
+                                    <div class="h6">60,000</div>
                                     <div class="mt-2 small">Realisasi</div>
-                                    <div class="h4">
+                                    <div class="h6">
                                         @can('admin')
                                         {{ number_format($realisasi_esr) }}
                                         @elsecan('user')
@@ -98,7 +98,7 @@
                                         @endcan
                                     </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
-                                    <div class="h4">
+                                    <div class="h6">
                                         {{ number_format($realisasi_partai_esr) }}
                                     </div>
                             </div>
@@ -139,7 +139,7 @@
         <div class="col">
             <div class="card radius-10 small">
                 <div class="card-body">
-                    <div class="h5 text-center">DPRD PROVINSI SUL-SEL 10</div>
+                    <div class="h6 text-center">DPRD PROVINSI SUL-SEL 10</div>
                     <hr>
                      <div class="row">
                         <div class="col-4">
@@ -147,9 +147,9 @@
                                 <img src="{{ asset('assets/images/avatars/yrk.png') }}" class="img-fluid"
                                     style="width: 60px">
                                     <div class="mt-2 small">Target</div>
-                                    <div class="h4">30,000</div>
+                                    <div class="h6">30,000</div>
                                     <div class="mt-2 small">Realisasi</div>
-                                    <div class="h4">
+                                    <div class="h6">
                                         @can('admin')
                                         {{ number_format($realisasi_yrk) }}
                                         @elsecan('user')
@@ -157,7 +157,7 @@
                                         @endcan
                                     </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
-                                    <div class="h4">{{ number_format($realisasi_partai_yrk) }}</div>
+                                    <div class="h6">{{ number_format($realisasi_partai_yrk) }}</div>
                                     
                             </div>
                         </div>
