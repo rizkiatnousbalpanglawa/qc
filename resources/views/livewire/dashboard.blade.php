@@ -281,11 +281,7 @@
                                     @can('admin')
                                     {{ number_format($item->total_suara) }}
                                     @elsecan('user')
-                                    @if ($item->caleg_id == 10)
                                     {{ number_format($item->total_suara*3/4) }}
-                                    @else
-                                    {{ number_format($item->total_suara) }}
-                                    @endif
                                     @endcan
                                 </td>
                             </tr>
