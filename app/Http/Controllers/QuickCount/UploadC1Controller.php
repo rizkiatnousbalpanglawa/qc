@@ -48,7 +48,7 @@ class UploadC1Controller extends Controller
             });
         }
 
-        $data['tps'] = $query->limit(10)->orderBy('district_id')->orderBy('village_id')->orderBy('nomor_tps')->with('upload')->get();
+        $data['tps'] = $query->limit(15)->orderBy('district_id')->orderBy('village_id')->orderBy('nomor_tps')->with('upload')->get();
         $data['kelurahan'] = Village::with('district')->get();
 
         return view('quick-count.showTps', $data);
