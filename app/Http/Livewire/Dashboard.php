@@ -23,9 +23,9 @@ class Dashboard extends Component
     {
        
         $data['jumlahTps_dpr'] = UploadC1::where('status','1')->count('tps_id');
-        $data['terahirUpdateDpr'] = UploadC1::where('status','1')->latest()->first();
+        $data['terahirUpdateDpr'] = UploadC1::where('status','1')->orderByDesc('id')->first();
         $data['jumlahTps_dprd'] = UploadC1::where('status','2')->count('tps_id');
-        $data['terahirUpdateDprd'] = UploadC1::where('status','2')->latest()->first();
+        $data['terahirUpdateDprd'] = UploadC1::where('status','2')->orderByDesc('id')->first();
         
         $data['totalTps'] = Tps::count('id');
         $data['caleg_dpr'] = Caleg::where('status', 1)->pluck('nama');
