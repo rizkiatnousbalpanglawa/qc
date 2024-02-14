@@ -10,4 +10,9 @@ class SuaraParpol extends Model
     use HasFactory;
 
     protected $guarded=['id'];
+
+    public function parpol()
+    {
+        return $this->belongsTo(Parpol::class,'parpol_id');
+    }
 }

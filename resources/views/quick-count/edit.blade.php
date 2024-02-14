@@ -13,8 +13,10 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        {{-- <li class="breadcrumb-item" aria-current="page"><a href="{{ url('upload-c1') }}">SAKSI</a></li> --}}
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{ url('upload-c1/saksi/show/') }}">TPS</a></li>
+                        {{-- <li class="breadcrumb-item" aria-current="page"><a href="{{ url('upload-c1') }}">SAKSI</a>
+                        </li> --}}
+                        <li class="breadcrumb-item" aria-current="page"><a
+                                href="{{ url('upload-c1/saksi/show/') }}">TPS</a></li>
                         <li class="breadcrumb-item" aria-current="page">Form</li>
                     </ol>
                 </nav>
@@ -29,7 +31,8 @@
                 <button class="btn">
                     <i class='bx bx-arrow-back'></i>
                 </button>
-                <span class="h6 align-middle">{{ $tps->regency->name.', '.$tps->district->name.', '.$tps->village->name }}</span>
+                <span class="h6 align-middle">{{ $tps->regency->name.', '.$tps->district->name.', '.$tps->village->name
+                    }}</span>
             </form>
         </div>
         <hr />
@@ -38,41 +41,51 @@
             <div class="card-body">
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="kode" value="{{ $c1->kode }}">
                     <div class="row">
                         <div class="col-lg-6">
+                            @if (!$c1->lampiran_c1)
                             <div class="mb-3">
                                 <label class="form-label">FILE C1</label>
-                                <input type="file" name="lampiran_c1" class="form-control @error('lampiran_c1') is-invalid @enderror">
+                                <input type="file" name="lampiran_c1"
+                                    class="form-control @error('lampiran_c1') is-invalid @enderror">
                                 @error('lampiran_c1')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
+                            @endif
+                            @if (!$c1->lampiran_plano)
                             <div class="mb-3">
                                 <label class="form-label">PLANO</label>
-                                <input type="file" name="lampiran_plano" class="form-control @error('lampiran_plano') is-invalid @enderror">
+                                <input type="file" name="lampiran_plano"
+                                    class="form-control @error('lampiran_plano') is-invalid @enderror">
                                 @error('lampiran_plano')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
+                            @endif
+                            @if (!$c1->lampiran_lokasi)
                             <div class="mb-3">
                                 <label class="form-label">LOKASI</label>
-                                <input type="file" name="lampiran_lokasi" class="form-control @error('lampiran_lokasi') is-invalid @enderror">
+                                <input type="file" name="lampiran_lokasi"
+                                    class="form-control @error('lampiran_lokasi') is-invalid @enderror">
                                 @error('lampiran_lokasi')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                                 @enderror
                             </div>
+                            @endif
                         </div>
                         <div class="col-lg-6">
                             {{-- <div class="mb-3">
                                 <label class="form-label">Nama Saksi</label>
-                                <input type="text" class="form-control text-uppercase" readonly value="{{ $saksi->nama }}"
-                                    autocomplete="off">
+                                <input type="text" class="form-control text-uppercase" readonly
+                                    value="{{ $saksi->nama }}" autocomplete="off">
                             </div> --}}
                             <div class="mb-4">
                                 <label class="form-label">Kecamatan</label>
@@ -96,11 +109,14 @@
                                 @foreach ($caleg as $item)
                                 <tr>
                                     <td class="align-middle">
-                                        <label for="" class="text-uppercase fw-bold">{{ $item->nomor_urut }}. {{ $item->nama }}</label>
+                                        <label for="" class="text-uppercase fw-bold">{{ $item->caleg->nomor_urut }}. {{
+                                            $item->caleg->nama }}</label>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" name="caleg_{{ $item->id }}" value="{{ old('caleg_'.$item->id) }}"
-                                            placeholder="Suara {{ $item->nama }}" autocomplete="off" required onkeypress="return hanyaAngka(event)">
+                                        <input type="number" class="form-control" name="caleg_{{ $item->caleg->id }}"
+                                            placeholder="Suara {{ $item->nama }}" autocomplete="off"
+                                            value="{{ $item->jumlah_suara }}" required
+                                            onkeypress="return hanyaAngka(event)">
                                     </td>
                                 </tr>
                                 @endforeach
@@ -111,11 +127,12 @@
                                 @foreach ($parpol as $item)
                                 <tr>
                                     <td class="align-middle">
-                                        <label for="" class="text-uppercase">{{ $item->nama }}</label>
+                                        <label for="" class="text-uppercase">{{ $item->parpol->nama }}</label>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" name="parpol_{{ $item->id }}" value="{{ old('parpol_'.$item->id) }}"
-                                            placeholder="Suara {{ $item->nama }}" autocomplete="off" required onkeypress="return hanyaAngka(event)">
+                                        <input type="number" class="form-control" name="parpol_{{ $item->parpol->id }}"
+                                            value="{{ $item->jumlah_suara }}" placeholder="Suara {{ $item->parpol }}"
+                                            autocomplete="off" required onkeypress="return hanyaAngka(event)">
                                     </td>
                                 </tr>
                                 @endforeach
@@ -124,8 +141,9 @@
                                         <label for="" class="text-uppercase">SUARA SAH</label>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" name="suara_sah" value="{{ old('suara_sah') }}"
-                                            placeholder="Suara Sah" autocomplete="off" required onkeypress="return hanyaAngka(event)">
+                                        <input type="number" class="form-control" name="suara_sah"
+                                            value="{{ $c1->suara_sah }}" placeholder="Suara Sah" autocomplete="off"
+                                            required onkeypress="return hanyaAngka(event)">
                                     </td>
                                 </tr>
                                 <tr>
@@ -133,8 +151,9 @@
                                         <label for="" class="text-uppercase text-danger">SUARA TIDAK SAH</label>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" name="suara_tidak_sah" value="{{ old('suara_tidak_sah') }}"
-                                            placeholder="Suara Tidak Sah" autocomplete="off" required onkeypress="return hanyaAngka(event)">
+                                        <input type="number" class="form-control" name="suara_tidak_sah"
+                                            value="{{ $c1->suara_tidak_sah }}" placeholder="Suara Tidak Sah"
+                                            autocomplete="off" required onkeypress="return hanyaAngka(event)">
                                     </td>
                                 </tr>
                                 <tr>
@@ -142,11 +161,12 @@
                                         <label for="" class="text-uppercase">Jumlah Pemilih</label>
                                     </td>
                                     <td>
-                                        <input type="number" class="form-control" name="jumlah_pemilih" value="{{ old('jumlah_pemilih') }}"
-                                            placeholder="Jumlah Pemilih" autocomplete="off" required onkeypress="return hanyaAngka(event)">
+                                        <input type="number" class="form-control" name="jumlah_pemilih"
+                                            value="{{ $c1->jumlah_pemilih }}" placeholder="Jumlah Pemilih"
+                                            autocomplete="off" required onkeypress="return hanyaAngka(event)">
                                     </td>
                                 </tr>
-                             
+
 
                             </table>
                         </div>
@@ -178,5 +198,5 @@
         return false;
       return true;
     }
-    </script>
+</script>
 @endsection

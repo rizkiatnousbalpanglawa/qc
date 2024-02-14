@@ -70,41 +70,21 @@ class UploadC1Controller extends Controller
 
     public function edit($status, Tps $tps, Request $request)
     {
+        $data['upload_c1_is_active'] = 'mm-active';
+        if (!Gate::check('admin') && !Gate::check('tim_data')) {
+            abort(401);
+        }
 
+        $data['tps'] = $tps;
+        $data['parpol'] = SuaraParpol::where('status', $status)->where('tps_id', $tps->id)->with(['parpol'])->get();
+        $data['caleg'] = SuaraCaleg::where('status', $status)->where('tps_id', $tps->id)->with(['caleg'])->get();
+        $data['c1'] = UploadC1::where('status', $status)->where('tps_id', $tps->id)->first();
+        return view('quick-count.edit', $data);
     }
 
-    public function store($status, Tps $tps, Request $request)
+    public function update($status, Tps $tps, Request $request)
     {
-        $validatedData = $this->validateFormData($request);
-        $kode = $this->generateUniqueCode();
-        $form = $this->prepareFormData($status, $tps, $kode, $validatedData);
-        $this->uploadFiles($request, $form);
-    
-        if ($this->isDuplicateEntry($status, $tps)) {
-            return abort(401);
-        }
-    
-        try {
-            $this->storeCalegVotes($status, $tps, $kode, $request);
-        } catch (\Exception $e) {
-            toast('Gagal menyimpan suara caleg', 'error');
-            return back();
-        }
-    
-        try {
-            $this->storeParpolVotes($status, $tps, $kode, $request);
-        } catch (\Exception $e) {
-            toast('Gagal menyimpan suara parpol', 'error');
-            return back();
-        }
-    
-        toast('Data berhasil disimpan!', 'success');
-        return redirect('upload-c1/saksi/show/');
-    }
-    
-    private function validateFormData(Request $request)
-    {
-        return $request->validate([
+        $validated = $request->validate([
             'lampiran_c1' => 'image|file|max:1024',
             'lampiran_plano' => 'image|file|max:1024',
             'lampiran_lokasi' => 'image|file|max:1024',
@@ -112,15 +92,7 @@ class UploadC1Controller extends Controller
             'suara_tidak_sah' => '',
             'jumlah_pemilih' => '',
         ]);
-    }
-    
-    private function generateUniqueCode()
-    {
-        return uniqid('carli-');
-    }
-    
-    private function prepareFormData($status, $tps, $kode, $validatedData)
-    {
+        $kode = $request->kode;
         $form['user_id'] = auth()->user()->id;
         $form['regency_id'] = $tps->regency_id;
         $form['district_id'] = $tps->district_id;
@@ -128,14 +100,10 @@ class UploadC1Controller extends Controller
         $form['tps_id'] = $tps->id;
         $form['kode'] = $kode;
         $form['status'] = $status;
-        $form['suara_sah'] = $validatedData['suara_sah'];
-        $form['suara_tidak_sah'] = $validatedData['suara_tidak_sah'];
-        $form['jumlah_pemilih'] = $validatedData['jumlah_pemilih'];
-        return $form;
-    }
-    
-    private function uploadFiles(Request $request, &$form)
-    {
+        $form['suara_sah'] = $validated['suara_sah'];
+        $form['suara_tidak_sah'] = $validated['suara_tidak_sah'];
+        $form['jumlah_pemilih'] = $validated['jumlah_pemilih'];
+
         if ($request->has('lampiran_c1')) {
             $form['lampiran_c1'] = $request->file('lampiran_c1')->store('lampiran');
         }
@@ -145,18 +113,13 @@ class UploadC1Controller extends Controller
         if ($request->has('lampiran_lokasi')) {
             $form['lampiran_lokasi'] = $request->file('lampiran_lokasi')->store('lampiran');
         }
-    }
-    
-    private function isDuplicateEntry($status, $tps)
-    {
-        return UploadC1::where('tps_id', $tps->id)->where('status', $status)->exists();
-    }
-    
-    private function storeCalegVotes($status, $tps, $kode, $request)
-    {
+
+        SuaraCaleg::where('kode', $kode)->delete();
+
         $caleg = Caleg::where('status', $status)->get();
         foreach ($caleg as $value) {
             $suaraCaleg['user_id'] = auth()->user()->id;
+            // $suaraCaleg['saksi_id'] = $saksi->id;
             $suaraCaleg['regency_id'] = $tps->regency_id;
             $suaraCaleg['district_id'] = $tps->district_id;
             $suaraCaleg['village_id'] = $tps->village_id;
@@ -167,22 +130,119 @@ class UploadC1Controller extends Controller
             $suaraCaleg['jumlah_suara'] = $request->input('caleg_' . $value->id);
             SuaraCaleg::create($suaraCaleg);
         }
-    }
-    
-    private function storeParpolVotes($status, $tps, $kode, $request)
-    {
-        $parpol = Parpol::get();
-        foreach ($parpol as $value) {
-            $suaraParpol['user_id'] = auth()->user()->id;
-            $suaraParpol['regency_id'] = $tps->regency_id;
-            $suaraParpol['district_id'] = $tps->district_id;
-            $suaraParpol['village_id'] = $tps->village_id;
-            $suaraParpol['tps_id'] = $tps->id;
-            $suaraParpol['kode'] = $kode;
-            $suaraParpol['status'] = $status;
-            $suaraParpol['parpol_id'] = $value->id;
-            $suaraParpol['jumlah_suara'] = $request->input('parpol_' . $value->id);
-            SuaraParpol::create($suaraParpol);
+
+
+        try {
+            $parpol = Parpol::get();
+            SuaraParpol::where('kode', $kode)->delete();
+            foreach ($parpol as $value) {
+                $suaraParpol['user_id'] = auth()->user()->id;
+                // $suaraParpol['saksi_id'] = $saksi->id;
+                $suaraParpol['regency_id'] = $tps->regency_id;
+                $suaraParpol['district_id'] = $tps->district_id;
+                $suaraParpol['village_id'] = $tps->village_id;
+                $suaraParpol['tps_id'] = $tps->id;
+                $suaraParpol['kode'] = $kode;
+                $suaraParpol['status'] = $status;
+                $suaraParpol['parpol_id'] = $value->id;
+                $suaraParpol['jumlah_suara'] = $request->input('parpol_' . $value->id);
+                SuaraParpol::create($suaraParpol);
+            }
+        } catch (\Exception $e) {
+            toast('Gagal menyimpan suara parpol', 'error');
+            return back();
         }
+
+        toast('Data berhasil disimpan!', 'success');
+        return redirect('upload-c1/saksi/show/');
+    }
+
+    public function store($status, Tps $tps, Request $request)
+    {
+        $validated = $request->validate([
+            'lampiran_c1' => 'image|file|max:1024',
+            'lampiran_plano' => 'image|file|max:1024',
+            'lampiran_lokasi' => 'image|file|max:1024',
+            'suara_sah' => '',
+            'suara_tidak_sah' => '',
+            'jumlah_pemilih' => '',
+        ]);
+        $kode = uniqid('carli-');
+        $form['user_id'] = auth()->user()->id;
+        // $form['saksi_id'] = $saksi->id;
+        $form['regency_id'] = $tps->regency_id;
+        $form['district_id'] = $tps->district_id;
+        $form['village_id'] = $tps->village_id;
+        $form['tps_id'] = $tps->id;
+        $form['kode'] = $kode;
+        $form['status'] = $status;
+        $form['suara_sah'] = $validated['suara_sah'];
+        $form['suara_tidak_sah'] = $validated['suara_tidak_sah'];
+        $form['jumlah_pemilih'] = $validated['jumlah_pemilih'];
+
+        if ($request->has('lampiran_c1')) {
+            $form['lampiran_c1'] = $request->file('lampiran_c1')->store('lampiran');
+        }
+        if ($request->has('lampiran_plano')) {
+            $form['lampiran_plano'] = $request->file('lampiran_plano')->store('lampiran');
+        }
+        if ($request->has('lampiran_lokasi')) {
+            $form['lampiran_lokasi'] = $request->file('lampiran_lokasi')->store('lampiran');
+        }
+
+        $cek = UploadC1::where('tps_id', $tps->id)->where('status', $status)->first();
+        if ($cek) {
+            return abort(401);
+        }
+
+        try {
+            UploadC1::create($form);
+        } catch (\Exception $e) {
+            toast('Gagal menyimpan data uploadC1, ' . $e, 'error');
+            return back();
+        }
+
+        try {
+            $caleg = Caleg::where('status', $status)->get();
+            foreach ($caleg as $value) {
+                $suaraCaleg['user_id'] = auth()->user()->id;
+                // $suaraCaleg['saksi_id'] = $saksi->id;
+                $suaraCaleg['regency_id'] = $tps->regency_id;
+                $suaraCaleg['district_id'] = $tps->district_id;
+                $suaraCaleg['village_id'] = $tps->village_id;
+                $suaraCaleg['tps_id'] = $tps->id;
+                $suaraCaleg['kode'] = $kode;
+                $suaraCaleg['status'] = $status;
+                $suaraCaleg['caleg_id'] = $value->id;
+                $suaraCaleg['jumlah_suara'] = $request->input('caleg_' . $value->id);
+                SuaraCaleg::create($suaraCaleg);
+            }
+        } catch (\Exception $e) {
+            toast('Gagal menyimpan suara caleg', 'error');
+            return back();
+        }
+
+        try {
+            $parpol = Parpol::get();
+            foreach ($parpol as $value) {
+                $suaraParpol['user_id'] = auth()->user()->id;
+                // $suaraParpol['saksi_id'] = $saksi->id;
+                $suaraParpol['regency_id'] = $tps->regency_id;
+                $suaraParpol['district_id'] = $tps->district_id;
+                $suaraParpol['village_id'] = $tps->village_id;
+                $suaraParpol['tps_id'] = $tps->id;
+                $suaraParpol['kode'] = $kode;
+                $suaraParpol['status'] = $status;
+                $suaraParpol['parpol_id'] = $value->id;
+                $suaraParpol['jumlah_suara'] = $request->input('parpol_' . $value->id);
+                SuaraParpol::create($suaraParpol);
+            }
+        } catch (\Exception $e) {
+            toast('Gagal menyimpan suara parpol', 'error');
+            return back();
+        }
+
+        toast('Data berhasil disimpan!', 'success');
+        return redirect('upload-c1/saksi/show/');
     }
 }
