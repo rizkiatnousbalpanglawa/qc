@@ -281,7 +281,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($kecTerbanyak_dprd as $item)
+                            {{-- @forelse ($kecTerbanyak_dprd as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->district->name }}</td>
@@ -291,7 +291,8 @@
                             <tr>
                                 <td colspan="3" class="text-center">Data Masih Kosong!!!</td>
                             </tr>
-                            @endforelse
+                            @endforelse --}}
+                           
                         </tbody>
                     </table>
 
