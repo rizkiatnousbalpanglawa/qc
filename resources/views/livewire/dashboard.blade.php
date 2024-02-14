@@ -88,11 +88,13 @@
                                 <div class="h6">30,000</div>
                                 <div class="mt-2 small">Realisasi</div>
                                 <div class="h6">
-                                    @can('admin')
+                                    @if (auth()->user()->role == 'admin')
                                     {{ number_format($realisasi_yrk) }}
-                                    @elsecan('user')
+                                        
+                                    @else
                                     {{ number_format($realisasi_yrk*3/4) }}
-                                    @endcan
+                                        
+                                    @endif
                                 </div>
                                 <div class="mt-2 small">Realisasi Suara Partai</div>
                                 <div class="h6">{{ number_format($realisasi_partai_yrk) }}</div>
@@ -197,11 +199,13 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->district->name }}</td>
                                 <td>
-                                    @can('admin')
+                                    @if (auth()->user()->role == 'admin')
                                     {{ number_format($item->jumlah_suara) }}
-                                    @elsecan('user')
+                                        
+                                    @else
                                     {{ number_format($item->jumlah_suara*3/4) }}
-                                    @endcan
+                                        
+                                    @endif
                                 </td>
                             </tr>
                             @empty
