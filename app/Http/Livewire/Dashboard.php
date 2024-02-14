@@ -22,7 +22,9 @@ class Dashboard extends Component
     public function render()
     {
         // $pemilih =  TpsPemilih::get();
-        // $data['pemilih'] = $pemilih;
+        $data['jumlahTps_dpr'] = UploadC1::where('status','1')->count('tps_id');
+        $data['jumlahTps_dprd'] = UploadC1::where('status','2')->count('tps_id');
+        $data['totalTps'] = Tps::count('id');
         $data['caleg_dpr'] = Caleg::where('status', 1)->pluck('nama');
         $data['suara_caleg_dpr'] = SuaraCaleg::where('status', 1)
             ->groupBy('caleg_id')
