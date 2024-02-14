@@ -19,9 +19,6 @@
 
         @canany(['admin'])
         <li class="menu-label">Data</li>
-        @endcanany
-
-        @can('admin')
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -50,9 +47,7 @@
 
             </ul>
         </li>
-        @endcan
 
-        @can('admin')
         <li class="menu-label">Setting</li>
         <li class="{{ $setting_is_active ?? '' }}">
             <a href="{{ url('user') }}">
@@ -61,9 +56,6 @@
                 <div class="menu-title">User</div>
             </a>
         </li>
-        @endcan
-
-        @canany(['admin', 'tim_data'])
         <li class="menu-label">Quick Count</li>
         <li class="{{ $upload_c1_is_active ?? '' }}">
             <a href="{{ url('upload-c1/saksi/show/') }}">
@@ -73,6 +65,8 @@
             </a>
         </li>
         @endcanany
+
+       
 
     </ul>
     <!--end navigation-->
