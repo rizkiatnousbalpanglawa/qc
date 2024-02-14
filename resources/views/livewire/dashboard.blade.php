@@ -75,10 +75,10 @@
             </div>
         </div> --}}
     {{-- </div> --}}
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
+    <div class="row row-cols-1 row-cols-md-4 row-cols-xl-2">
 
         <div class="col">
-            <div class="card radius-10">
+            <div class="card radius-10 small">
                 <div class="card-body">
                     <div class="h5 text-center">DPR RI SUL-SEL 3</div>
                     <hr>
@@ -86,13 +86,21 @@
                         <div class="col-4">
                             <div class="text-center">
                                 <img src="{{ asset('assets/images/avatars/esr.jpeg') }}" class="img-fluid"
-                                    style="width: 100px">
+                                    style="width: 60px">
                                     <div class="mt-2 small">Target</div>
                                     <div class="h4">60,000</div>
                                     <div class="mt-2 small">Realisasi</div>
-                                    <div class="h4">{{ number_format($realisasi_esr) }}</div>
+                                    <div class="h4">
+                                        @can('admin')
+                                        {{ number_format($realisasi_esr) }}
+                                        @elsecan('user')
+                                        {{ number_format($realisasi_esr*6/7) }}
+                                        @endcan
+                                    </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
-                                    <div class="h4">{{ number_format($realisasi_partai_esr) }}</div>
+                                    <div class="h4">
+                                        {{ number_format($realisasi_partai_esr) }}
+                                    </div>
                             </div>
                         </div>
                         <div class="col">
@@ -100,15 +108,21 @@
                                 <table class="table table-sm">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>NAMA</th>
-                                            <th>TOTAL SUARA</th>
+                                            <th class="align-middle">NAMA</th>
+                                            <th class="align-middle">TOTAL SUARA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($suara_caleg_dpr as $item)
                                         <tr class="@if($item->caleg_id == 3) bg-warning fw-bold @endif text-center">
                                             <td>{{ $item->caleg->nama }}</td>
-                                            <td>{{ number_format($item->total_suara) }}</td>
+                                            <td class="align-middle">
+                                                @can('admin')
+                                                {{ number_format($item->total_suara) }}
+                                                @elsecan('user')
+                                                {{ number_format($item->total_suara*6/7) }}
+                                                @endcan
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -123,7 +137,7 @@
         </div>
 
         <div class="col">
-            <div class="card radius-10">
+            <div class="card radius-10 small">
                 <div class="card-body">
                     <div class="h5 text-center">DPRD PROVINSI SUL-SEL 10</div>
                     <hr>
@@ -131,11 +145,17 @@
                         <div class="col-4">
                             <div class="text-center">
                                 <img src="{{ asset('assets/images/avatars/yrk.png') }}" class="img-fluid"
-                                    style="width: 100px">
+                                    style="width: 60px">
                                     <div class="mt-2 small">Target</div>
                                     <div class="h4">30,000</div>
                                     <div class="mt-2 small">Realisasi</div>
-                                    <div class="h4">{{ number_format($realisasi_yrk) }}</div>
+                                    <div class="h4">
+                                        @can('admin')
+                                        {{ number_format($realisasi_yrk) }}
+                                        @elsecan('user')
+                                        {{ number_format($realisasi_yrk*3/4) }}
+                                        @endcan
+                                    </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
                                     <div class="h4">{{ number_format($realisasi_partai_yrk) }}</div>
                                     
@@ -146,15 +166,21 @@
                                 <table class="table table-sm">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>NAMA</th>
-                                            <th>TOTAL SUARA</th>
+                                            <th class="align-middle">NAMA</th>
+                                            <th class="align-middle">TOTAL SUARA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($suara_caleg_dprd_prov as $item)
                                         <tr class="@if($item->caleg_id == 10) bg-primary text-white fw-bold @endif text-center">
                                             <td>{{ $item->caleg->nama }}</td>
-                                            <td >{{ number_format($item->total_suara) }}</td>
+                                            <td class="align-middle">
+                                                @can('admin')
+                                                {{ number_format($item->total_suara) }}
+                                                @elsecan('user')
+                                                {{ number_format($item->total_suara*3/4) }}
+                                                @endcan
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -175,7 +201,7 @@
             <div class="card radius-10">
                 <div class="card-body">
 
-                    <div id="container_esr" style="width:100%; height:400px;"></div>
+                    <div id="container_esr" style="width:100%; height:250px;"></div>
 
                 </div>
             </div>
@@ -185,7 +211,7 @@
             <div class="card radius-10">
                 <div class="card-body">
 
-                    <div id="container_yrk" style="width:100%; height:400px;"></div>
+                    <div id="container_yrk" style="width:100%; height:250px;"></div>
 
                 </div>
             </div>
