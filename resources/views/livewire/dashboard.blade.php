@@ -74,7 +74,7 @@
             <div class="card radius-10 small">
                 <div class="card-body">
                     <div class="">
-                        <span class="h6 border-5 border-start ps-1 border-primary">DPRD PROVINSI SUL-SEL 10</span>
+                        <span class="h6 border-5 border-start ps-1 border-primary">DPRD PROV SUL-SEL 10</span>
                         <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dprd / $totalTps * 100,2) }}%</span></span>
 
                     </div>
