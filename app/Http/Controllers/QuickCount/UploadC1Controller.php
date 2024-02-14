@@ -25,9 +25,9 @@ class UploadC1Controller extends Controller
     public function saksi($stat, Tps $tps)
     {
         $data['upload_c1_is_active'] = 'mm-active';
-        if (!Gate::check('admin') && !Gate::check('tim_data')) {
-            abort(401);
-        }
+        // if (!Gate::check('admin') && !Gate::check('tim_data')) {
+        //     abort(401);
+        // }
         $data['tps'] = $tps;
         $data['stat'] = $stat;
         return view('quick-count.saksi', $data);
@@ -36,9 +36,9 @@ class UploadC1Controller extends Controller
     public function showTps(Request $request)
     {
         $data['upload_c1_is_active'] = 'mm-active';
-        if (!Gate::check('admin') && !Gate::check('tim_data')) {
-            abort(401);
-        }
+        // if (!Gate::check('admin') && !Gate::check('tim_data')) {
+        //     abort(401);
+        // }
         // $data['saksi'] = $saksi;
         $query = Tps::with(['district', 'regency']);
 
@@ -57,9 +57,9 @@ class UploadC1Controller extends Controller
     public function form($status, Tps $tps)
     {
         $data['upload_c1_is_active'] = 'mm-active';
-        if (!Gate::check('admin') && !Gate::check('tim_data')) {
-            abort(401);
-        }
+        // if (!Gate::check('admin') && !Gate::check('tim_data')) {
+        //     abort(401);
+        // }
 
         // $data['saksi'] = $saksi;
         $data['tps'] = $tps;
@@ -72,9 +72,9 @@ class UploadC1Controller extends Controller
     public function edit($status, Tps $tps, Request $request)
     {
         $data['upload_c1_is_active'] = 'mm-active';
-        if (!Gate::check('admin') && !Gate::check('tim_data')) {
-            abort(401);
-        }
+        // if (!Gate::check('admin') && !Gate::check('tim_data')) {
+        //     abort(401);
+        // }
 
         $data['tps'] = $tps;
         $data['parpol'] = SuaraParpol::where('status', $status)->where('tps_id', $tps->id)->with(['parpol'])->get();
