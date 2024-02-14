@@ -225,16 +225,6 @@
 
     </div>
 
-    {{-- <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body text-center">
-
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <script>
         // Inisialisasi chart
         var chart = Highcharts.chart('container_esr', {
