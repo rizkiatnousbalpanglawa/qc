@@ -106,12 +106,18 @@ class UploadC1Controller extends Controller
             return abort(401);
         }
 
-        try {
+        // try {
+        //     UploadC1::create($form);
+        // } catch (\Exception $e) {
+        //     toast('Gagal menyimpan data uploadC1, ' . $e, 'error');
+        //     return back();
+        // }
+
             UploadC1::create($form);
-        } catch (\Exception $e) {
             toast('Gagal menyimpan data uploadC1, ' . $e, 'error');
             return back();
-        }
+
+
 
         try {
             $caleg = Caleg::where('status', $status)->get();
