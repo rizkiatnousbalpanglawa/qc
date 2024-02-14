@@ -104,6 +104,7 @@ class UploadC1Controller extends Controller
         $form['suara_tidak_sah'] = $validated['suara_tidak_sah'];
         $form['jumlah_pemilih'] = $validated['jumlah_pemilih'];
 
+        $cekc1 = UploadC1::where('kode', $kode)->where('status', $status)->first();
         if ($request->has('lampiran_c1')) {
             $form['lampiran_c1'] = $request->file('lampiran_c1')->store('lampiran');
         }
@@ -114,6 +115,7 @@ class UploadC1Controller extends Controller
             $form['lampiran_lokasi'] = $request->file('lampiran_lokasi')->store('lampiran');
         }
 
+        $cekc1->update($form);
         SuaraCaleg::where('kode', $kode)->delete();
 
         $caleg = Caleg::where('status', $status)->get();

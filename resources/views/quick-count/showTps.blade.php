@@ -63,13 +63,25 @@
                         </thead>
                         <tbody>
                             @foreach ($tps as $item)
+                            @php
+                                if($item->upload->where('status','1')->isEmpty() && $item->upload->where('status','2')->isNotEmpty()) {
+                                    $warna = 'bg-warning';
+                                } elseif ($item->upload->where('status','1')->isNotEmpty() && $item->upload->where('status','2')->isEmpty()) {
+                                    $warna = 'bg-primary  text-white';
+                                } elseif($item->upload->where('status','1')->isNotEmpty() && $item->upload->where('status','2')->isNotEmpty()) {
+                                    $warna = 'bg-success text-white';
+                                }else {
+                                    $warna="";
+                                }
+                                
+                            @endphp
                             <tr>
-                                <td class="text-center align-middle">
+                                <td class="text-center align-middle {{ $warna }}">
                                     {{ $item->district->name }} <br>
                                     {{ $item->village->name }}
                                 </td>
-                                <td class="text-center align-middle">{{ $item->nomor_tps }}</td>
-                                <td class="text-center align-middle">
+                                <td class="text-center align-middle {{ $warna }}">{{ $item->nomor_tps }}</td>
+                                <td class="text-center align-middle" style="width: 50px">
                                     @if ($item->upload->where('status','1')->isEmpty() && $item->upload->where('status','2')->isEmpty())
                                     <a href="{{ url('upload-c1/1/tps/'.$item->id) }}"
                                         class="btn btn-warning btn-sm">
@@ -84,7 +96,15 @@
                                         class="btn btn-warning btn-sm">
                                         ESR
                                     </a>
+                                    <a href="{{ url('upload-c1/2/edit/'.$item->id) }}"
+                                        class="btn btn-primary btn-sm">
+                                        EDIT YRK
+                                    </a>
                                     @elseif ($item->upload->where('status','2')->isEmpty() && $item->upload->where('status','1')->isNotEmpty())
+                                    <a href="{{ url('upload-c1/1/edit/'.$item->id) }}"
+                                        class="btn btn-warning btn-sm">
+                                       EDIT ESR
+                                    </a>
                                     <a href="{{ url('upload-c1/2/tps/'.$item->id) }}"
                                         class="btn btn-primary btn-sm">
                                         YRK
