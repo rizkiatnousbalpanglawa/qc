@@ -128,7 +128,12 @@
                                                 @can('admin')
                                                 {{ number_format($item->total_suara) }}
                                                 @elsecan('user')
+                                            
+                                                @if ($item->caleg->id == 3)
                                                 {{ number_format($item->total_suara*6/7) }}
+                                                @else
+                                                {{ number_format($item->total_suara) }}
+                                                @endif
                                                 @endcan
                                             </td>
                                         </tr>
@@ -191,7 +196,11 @@
                                                 @can('admin')
                                                 {{ number_format($item->total_suara) }}
                                                 @elsecan('user')
+                                                @if ($item->caleg->id == 10)
                                                 {{ number_format($item->total_suara*3/4) }}
+                                                @else
+                                                {{ number_format($item->total_suara) }}
+                                                @endif
                                                 @endcan
                                             </td>
                                         </tr>
