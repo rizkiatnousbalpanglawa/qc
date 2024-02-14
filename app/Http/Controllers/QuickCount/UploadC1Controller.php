@@ -25,7 +25,7 @@ class UploadC1Controller extends Controller
     public function saksi($stat, Tps $tps)
     {
         $data['upload_c1_is_active'] = 'mm-active';
-        if (!Gate::check('admin')) {
+        if (!Gate::check('admin') && !Gate::check('tim_data')) {
             abort(401);
         }
         $data['tps'] = $tps;
@@ -36,7 +36,7 @@ class UploadC1Controller extends Controller
     public function showTps(Request $request)
     {
         $data['upload_c1_is_active'] = 'mm-active';
-        if (!Gate::check('admin')) {
+        if (!Gate::check('admin') && !Gate::check('tim_data')) {
             abort(401);
         }
         // $data['saksi'] = $saksi;

@@ -17,8 +17,9 @@
 
         </li>
 
-        @canany(['admin', 'tim_data'])
+        @canany(['admin'])
         <li class="menu-label">Data</li>
+        @endcanany
 
         @can('admin')
         <li>
@@ -51,7 +52,7 @@
         </li>
         @endcan
 
-
+        @can('admin')
         <li class="menu-label">Setting</li>
         <li class="{{ $setting_is_active ?? '' }}">
             <a href="{{ url('user') }}">
@@ -60,7 +61,9 @@
                 <div class="menu-title">User</div>
             </a>
         </li>
+        @endcan
 
+        @canany(['admin', 'tim_data'])
         <li class="menu-label">Quick Count</li>
         <li class="{{ $upload_c1_is_active ?? '' }}">
             <a href="{{ url('upload-c1/saksi/show/') }}">
@@ -70,8 +73,6 @@
             </a>
         </li>
         @endcanany
-
-
 
     </ul>
     <!--end navigation-->
