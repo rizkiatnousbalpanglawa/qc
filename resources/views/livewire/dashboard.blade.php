@@ -240,15 +240,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->district->name }}</td>
                                 <td>
-                                    @can('admin')
-                                    {{ number_format($item->total_suara) }}
-                                    @elsecan('user')
-                                    @if ($item->caleg_id == 10)
-                                    {{ number_format($item->total_suara*3/4) }}
-                                    @else
-                                    {{ number_format($item->total_suara) }}
-                                    @endif
-                                    @endcan
+                                    {{ $item->jumlah_suara }}
                                 </td>
                             </tr>
                             @empty
@@ -281,18 +273,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @forelse ($kecTerbanyak_dprd as $item)
+                            @forelse ($kecTerbanyak_dprd as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->district->name }}</td>
-                                <td>{{ $item->jumlah_suara }}</td>
+                                <td>
+                                    @can('admin')
+                                    {{ number_format($item->total_suara) }}
+                                    @elsecan('user')
+                                    @if ($item->caleg_id == 10)
+                                    {{ number_format($item->total_suara*3/4) }}
+                                    @else
+                                    {{ number_format($item->total_suara) }}
+                                    @endif
+                                    @endcan
+                                </td>
                             </tr>
                             @empty
                             <tr>
                                 <td colspan="3" class="text-center">Data Masih Kosong!!!</td>
                             </tr>
-                            @endforelse --}}
-                           
+                            @endforelse
                         </tbody>
                     </table>
 
