@@ -275,7 +275,7 @@
                 type: 'bar'
             },
             title: {
-                text: 'DPRD PROVINSI SULSEL 11 NASDEM'
+                text: 'DPRD PROVINSI SULSEL 10 NASDEM'
             },
             xAxis: {
                 categories: [ @foreach ($suara_caleg_dprd_prov as $item )  '{{ $item->caleg->nama }}',  @endforeach ],
