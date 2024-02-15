@@ -116,12 +116,14 @@
                 </td>
                 <td class="text-center align-middle">
                     @forelse ($item->lampiran->where('status',1) as $items)
-                    @if ($item->lampiran->lampiran_c1)
-                    <div style="color: green">C1 Ada</div>
-                    @elseif ($item->lampiran->lampiran_plano)
-                    <div style="color: green">PLANO Ada</div>
-                    @else
-                    <div style="color: green">LOKASI Ada</div>
+                    @if ($items->lampiran_c1)
+                    <div style="color: green">- C1</div>
+                    @endif
+                    @if ($items->lampiran_plano)
+                    <div style="color: green">- PLANO</div>
+                    @endif
+                    @if ($items->lampiran_lokasi)
+                    <div style="color: green">- LOKASI</div>
                     @endif
                     @empty
                     <div style="color: red">--</div>
@@ -129,12 +131,14 @@
                 </td>
                 <td class="text-center align-middle">
                     @forelse ($item->lampiran->where('status',2) as $items)
-                    @if ($item->lampiran->lampiran_c1)
-                    <div style="color: green">C1 Ada</div>
-                    @elseif ($item->lampiran->lampiran_plano)
-                    <div style="color: green">PLANO Ada</div>
-                    @else
-                    <div style="color: green">LOKASI Ada</div>
+                    @if ($items->lampiran_c1)
+                    <div style="color: green">- C1</div>
+                    @endif
+                    @if ($items->lampiran_plano)
+                    <div style="color: green">- PLANO</div>
+                    @endif
+                    @if ($items->lampiran_lokasi)
+                    <div style="color: green">- LOKASI</div>
                     @endif
                     @empty
                     <div style="color: red">--</div>
