@@ -69,7 +69,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{-- <div class="float-end fst-italic">Diperbarui {{ $terahirUpdateDpr->created_at->diffForHumans() }}</div> --}}
+                                    <div class="float-end fst-italic">Diperbarui {{ $terahirUpdateDpr->created_at->diffForHumans() }}</div>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{-- <div class="float-end fst-italic small my-0">Diperbarui {{ $terahirUpdateDprd->created_at->diffForHumans() }}</div> --}}
+                                    <div class="float-end fst-italic small my-0">Diperbarui {{ $terahirUpdateDprd->created_at->diffForHumans() }}</div>
     
                                 </div>
                             </div>
