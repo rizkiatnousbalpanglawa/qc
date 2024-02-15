@@ -37,54 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($tps as $item)
-                    @php
-                    $warnaBaris = '';
-
-                    // Cek apakah ada data DPT dan Pilihan
-                    if ($item->pilihan->isNotEmpty()) {
-                    $warnaBaris = 'bg-success';
-                    } 
-                    @endphp
-                    <tr class="{{ $warnaBaris }}">
-                        {{-- <td>
-                            @if ($item->dpt->isNotEmpty())
-                            @if ($item->dpt->first()->pilihan->isNotEmpty())
-                            {{ $item->dpt->first()->pilihan->count() }}
-                            @endif
-                            @endif
-                        </td> --}}
-                        <td class="text-center align-middle">{{ $item->district->name }}</td>
-                        <td class="text-center align-middle">{{ $item->village->name }}</td>
-                        <td class="text-center align-middle">{{ $item->nomor_tps }}</td>
-                        <td class="text-center align-middle">
-                            {{ $item->jumlah_dpt }}
-                            {{-- <div class="fst-italic">Ditambahkan oleh {{ $item->user->name ?? '-' }}</div>
-                            --}}
-                        </td>
-                        <td class="text-center" style="width: 50px">
-                            <button type="button" class="btn btn-sm p-0" data-bs-toggle="dropdown">
-                                <i class='bx bx-dots-vertical-rounded  p-0'></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                                <a class="dropdown-item" href="{{ url('tps/show/'.$item->id) }}">DPT</a>
-                                <a class="dropdown-item" href="{{ url('tps/edit/'.$item->id) }}">Edit</a>
-                                <div class="dropdown-divider"></div>
-                                <form action="" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <input type="hidden" name="tps_id" value="{{ $item->id }}">
-                                    <button type="submit" class="dropdown-item text-danger"
-                                        onclick="return confirm('Yakin Hapus?')">Hapus</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="5" class="text-center">Data tidak ditemukan!</td>
-                    </tr>
-                    @endforelse
+                   
                 </tbody>
             </table>
         </div>

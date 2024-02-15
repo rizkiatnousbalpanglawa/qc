@@ -30,8 +30,8 @@
         <h6 class="mb-0 text-uppercase">Data DPT per TPS</h6>
         <hr />
 
-        {{-- @livewire('tps-table') --}}
-        @yield('tps_table')
+        @livewire('tps-table')
+        {{-- @yield('tps_table') --}}
 
 
     </div>

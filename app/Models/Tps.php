@@ -26,9 +26,9 @@ class Tps extends Model
         return $this->belongsTo(Regency::class,'regency_id','id');
     }
 
-    public function dpt()
+    public function lampiran()
     {
-        return $this->hasMany(TpsPemilih::class,'tps_id','id');
+        return $this->hasMany(UploadC1::class,'tps_id','id');
     }
 
     public function upload()

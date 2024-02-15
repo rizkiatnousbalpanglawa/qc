@@ -47,6 +47,13 @@
 
             </ul>
         </li>
+        <li class="{{ $tps_is_active ?? '' }}">
+            <a href="{{ url('tps') }}">
+                <div class="parent-icon"><i class='bx bxs-user-account'></i>
+                </div>
+                <div class="menu-title">TPS</div>
+            </a>
+        </li>
 
         <li class="menu-label">Setting</li>
         <li class="{{ $setting_is_active ?? '' }}">

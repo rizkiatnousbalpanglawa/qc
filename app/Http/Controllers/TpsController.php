@@ -12,14 +12,14 @@ class TpsController extends Controller
     {
        $data['tps_is_active'] = "mm-active";
     
-       $query = Tps::with(['village','dpt','pilihan','status'])->withCount('dpt as jumlah_dpt');
+       $query = Tps::with(['village']);
 
        if ($request->has('village_id')) {
            $query->where('village_id',$request->village_id);
        }
 
        $data['tps'] = $query->limit(15)->latest()->orderBy('district_id')->orderBy('village_id')->orderBy('nomor_tps')->get();
-        return view('data.tps.table', $data);
+        return view('data.tps.index', $data);
     }
 
     public function create()
@@ -42,7 +42,7 @@ class TpsController extends Controller
     {
         $data['tps'] = $tps;
         $data['tps_is_active'] = "mm-active";
-        $data['pemilih'] = TpsPemilih::where('tps_id',$tps->id)->get();
+        // $data['pemilih'] = TpsPemilih::where('tps_id',$tps->id)->get();
         return view('data.tps.anggota.index',$data);
     }
 
@@ -70,7 +70,7 @@ class TpsController extends Controller
 
         Tps::where('id',$tps_id)->delete();
 
-        TpsPemilih::where('tps_id',$tps_id)->delete();
+        // TpsPemilih::where('tps_id',$tps_id)->delete();
 
         alert('Berhasil','Data berhasil dihapus!','success');
         return back();

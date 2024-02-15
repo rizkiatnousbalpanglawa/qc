@@ -2,21 +2,77 @@
     <div class="card">
         <div class="card-body">
 
-            <form wire:submit.prevent='render'>
-                <div class="row">
-                    <div class="col">
-                        <div class="input-group flex-nowrap mb-3">
-                            <span class="input-group-text" id="addon-wrapping"><i class='bx bx-search'></i></span>
-                            <input type="text" wire:model='kelurahan' class="form-control"
-                                placeholder="Cari Kelurahan ...">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <button wire:click='search' class="btn btn-primary">Cari</button>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mb-3" wire:ignore>
+                        {{-- <label for="" class="form-label">Kabupaten / Kota</label> --}}
+                        <select name="" id="" class="form-select select_kab_kota" wire:model='searchKab'>
+                            <option value="">--SEMUA KAB/KOTA--</option>
+                            @foreach ($kabupaten as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+
+
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="mb-3" wire:ignore>
+                        {{-- <label for="" class="form-label">Kecamatan</label> --}}
+                        <select name="" id="" class="form-select select_kec" wire:model='searchKec'>
+                            <option value="">--SEMUA KECAMATAN--</option>
+                            @foreach ($kecamatan as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
 
-            </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-3" wire:ignore>
+                        {{-- <label for="" class="form-label">Kelurahan</label> --}}
+                        <select name="" id="" class="form-select select_kel" wire:model='searchKel'>
+                            <option value="">--SEMUA KELURAHAN--</option>
+                            @foreach ($kelurahan as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3" wire:ignore>
+                        {{-- <label for="" class="form-label">TPS</label> --}}
+                        <select name="" id="" class="form-select select_tps" wire:model='searchTps'>
+                            <option value="">--SEMUA TPS--</option>
+                            @foreach ($dataTps->unique('nomor_tps')->sortBy('nomor_tps') as $item)
+                            <option value="{{ $item->nomor_tps }}">{{ $item->nomor_tps }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-3" wire:ignore>
+                        {{-- <label for="" class="form-label">Pilihan</label> --}}
+                        <select name="" id="" class="form-select select_pilihan" wire:model='searchData'>
+                            <option value="">--SEMUA DATA--</option>
+                            <option value="1">DPR RI SUL-SEL 3</option>
+                            <option value="2">DPRD PROV SUL-SEL 10</option>
+                            <option value="99">DATA TPS KOSONG</option>
+                        </select>
+                    </div>
+                </div>
+                {{-- <div class="col-lg-4">
+                    <div class="mb-3" wire:ignore>
+                        <select name="" id="" class="form-select select_pilihan" wire:model='searchPilihan'>
+                            <option value="">--SEMUA DATA--</option>
+                            <option value="1">DPR RI SUL-SEL 3</option>
+                            <option value="2">DPRD PROV SUL-SEL 10</option>
+                        </select>
+                    </div>
+                </div> --}}
+
+            </div>
 
             <div class="text-center" wire:loading.flex>
                 Processing ...
@@ -29,7 +85,12 @@
                             <th class="text-center">KECAMATAN</th>
                             <th class="text-center">KELURAHAN</th>
                             <th class="text-center">TPS</th>
-                            <th class="text-center">JML DPT</th>
+                            <th class="text-center">SUARA SAH</th>
+                            <th class="text-center">TIDAK SAH</th>
+                            <th class="text-center">JUMLAH PEMILIH</th>
+                            <th class="text-center"> C1</th>
+                            <th class="text-center"> PLANO</th>
+                            <th class="text-center"> LOKASI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,9 +100,43 @@
                             <td class="text-center align-middle">{{ $item->village->name }}</td>
                             <td class="text-center align-middle">{{ $item->nomor_tps }}</td>
                             <td class="text-center align-middle">
-                                {{ $item->jumlah_dpt }}
-                                {{-- <div class="fst-italic">Ditambahkan oleh {{ $item->user->name ?? '-' }}</div>
-                                --}}
+                                @foreach ($item->lampiran->where('status',1) as $items)
+                                DPR RI = {{ $items->suara_sah }} <br>
+                                @endforeach
+                                @foreach ($item->lampiran->where('status',2) as $items)
+                                DPRD PROV = {{ $items->suara_sah }} <br>
+                                @endforeach
+                            </td>
+                            <td class="text-center align-middle">
+                                @foreach ($item->lampiran->where('status',1) as $items)
+                                DPR RI = {{ $items->suara_tidak_sah }} <br>
+                                @endforeach
+                                @foreach ($item->lampiran->where('status',2) as $items)
+                                DPRD PROV = {{ $items->suara_tidak_sah }} <br>
+                                @endforeach
+                            </td>
+                            <td class="text-center align-middle">
+                                @foreach ($item->lampiran->where('status',1) as $items)
+                                DPR RI = {{ $items->jumlah_pemilih }} <br>
+                                @endforeach
+                                @foreach ($item->lampiran->where('status',2) as $items)
+                                DPRD PROV = {{ $items->jumlah_pemilih }} <br>
+                                @endforeach
+                            </td>
+                            <td class="text-center align-middle">
+                               @if ($item->lampiran_c1)
+                               <a href="{{ asset('lampiran/'.$item->lampiran_c1) }}">Lihat</a> 
+                               @endif
+                            </td>
+                            <td class="text-center align-middle">
+                                @if ($item->lampiran_plano)
+                                <a href="{{ asset('lampiran/'.$item->lampiran_plano) }}">Lihat</a> 
+                                @endif
+                            </td>
+                            <td class="text-center align-middle">
+                                @if ($item->lampiran_lokasi)
+                                <a href="{{ asset('lampiran/'.$item->lampiran_lokasi) }}">Lihat</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -55,5 +150,51 @@
         </div>
     </div>
 
+    @section('script')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.select_kab_kota').select2();
+        $('.select_kab_kota').on('change', function (e) {
+            var data = $('.select_kab_kota').select2("val");
+            @this.set('searchKab', data);
+        });
+        $('.select_kel').select2();
+        $('.select_kel').on('change', function (e) {
+            var data = $('.select_kel').select2("val");
+            @this.set('searchKel', data);
+        });
+        $('.select_kec').select2();
+        $('.select_kec').on('change', function (e) {
+            var data = $('.select_kec').select2("val");
+            @this.set('searchKec', data);
+        });
+        $('.select_tps').select2();
+        $('.select_tps').on('change', function (e) {
+            var data = $('.select_tps').select2("val");
+            @this.set('searchTps', data);
+        });
+        $('.select_pilihan').select2();
+        $('.select_pilihan').on('change', function (e) {
+            var data = $('.select_pilihan').select2("val");
+            @this.set('searchData', data);
+        });
+        $('.select_status').select2();
+        $('.select_status').on('change', function (e) {
+            var data = $('.select_status').select2("val");
+            @this.set('searchStatus', data);
+        });
+        $('.select_pengusul').select2();
+        $('.select_pengusul').on('change', function (e) {
+            var data = $('.select_pengusul').select2("val");
+            @this.set('searchPengusul', data);
+        });
+
+    });
+</script>
+@endsection
 
 </div>
