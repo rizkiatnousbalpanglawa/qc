@@ -126,41 +126,203 @@
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
                                 @if ($items->lampiran_c1)
-                                <a href="{{ asset('storage/'.$items->lampiran_c1) }}">DPR RI</a> 
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#ric{{ $items->id }}">
+                                    DPR RI
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="ric{{ $items->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">{{
+                                                    $item->district->name. ', '. $item->village->name .', TPS
+                                                    -'.$item->nomor_tps }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/'.$items->lampiran_c1) }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
                                 @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_c1)
-                                <a href="{{ asset('storage/'.$items->lampiran_c1) }}">DPRD PROV</a> 
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#dprdc{{ $items->id }}">
+                                    DPRD PROV
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="dprdc{{ $items->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">{{
+                                                    $item->district->name. ', '. $item->village->name .', TPS
+                                                    -'.$item->nomor_tps }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/'.$items->lampiran_c1) }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
-                              
+
                                 @endforeach
                             </td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
                                 @if ($items->lampiran_plano)
-                                <a href="{{ asset('storage/'.$items->lampiran_plano) }}">DPR RI</a> 
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#rip{{ $items->id }}">
+                                    DPR RI
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="rip{{ $items->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">{{
+                                                    $item->district->name. ', '. $item->village->name .', TPS
+                                                    -'.$item->nomor_tps }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/'.$items->lampiran_plano) }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
                                 @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_plano)
-                                <a href="{{ asset('storage/'.$items->lampiran_plano) }}">DPRD PROV</a> 
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#dprdp{{ $items->id }}">
+                                    DPRD PROV
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="dprdp{{ $items->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">{{
+                                                    $item->district->name. ', '. $item->village->name .', TPS
+                                                    -'.$item->nomor_tps }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/'.$items->lampiran_plano) }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
-                              
+
                                 @endforeach
                             </td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
                                 @if ($items->lampiran_lokasi)
-                                <a href="{{ asset('storage/'.$items->lampiran_lokasi) }}">DPR RI</a>
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#rilok{{ $items->id }}">
+                                    DPR RI
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="rilok{{ $items->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">{{
+                                                    $item->district->name. ', '. $item->village->name .', TPS
+                                                    -'.$item->nomor_tps }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/'.$items->lampiran_lokasi) }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
-                            
+
                                 @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_lokasi)
-                                <a href="{{ asset('storage/'.$items->lampiran_lokasi) }}">DPRD PROV</a>
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#dprdlok{{ $items->id }}">
+                                    DPRD PROV
+                                </a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="dprdlok{{ $items->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="modal-title" id="exampleModalLabel">{{
+                                                    $item->district->name. ', '. $item->village->name .', TPS
+                                                    -'.$item->nomor_tps }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('storage/'.$items->lampiran_lokasi) }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
-                             
+
                                 @endforeach
                             </td>
                         </tr>
@@ -176,11 +338,11 @@
     </div>
 
     @section('script')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 
-<script>
-    // In your Javascript (external .js resource or <script> tag)
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
         $('.select_kab_kota').select2();
         $('.select_kab_kota').on('change', function (e) {
@@ -219,7 +381,7 @@
         });
 
     });
-</script>
-@endsection
+    </script>
+    @endsection
 
 </div>
