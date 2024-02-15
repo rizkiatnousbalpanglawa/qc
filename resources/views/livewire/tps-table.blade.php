@@ -125,26 +125,42 @@
                             </td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
+                                @if ($items->lampiran_c1)
                                 <a href="{{ asset('storage/'.$items->lampiran_c1) }}">DPR RI</a> 
+                                @endif
                                 @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
+                                @if ($items->lampiran_c1)
                                 <a href="{{ asset('storage/'.$items->lampiran_c1) }}">DPRD PROV</a> 
+                                @endif
+                              
                                 @endforeach
                             </td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
+                                @if ($items->lampiran_plano)
                                 <a href="{{ asset('storage/'.$items->lampiran_plano) }}">DPR RI</a> 
+                                @endif
                                 @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
+                                @if ($items->lampiran_plano)
                                 <a href="{{ asset('storage/'.$items->lampiran_plano) }}">DPRD PROV</a> 
+                                @endif
+                              
                                 @endforeach
                             </td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
+                                @if ($items->lampiran_lokasi)
                                 <a href="{{ asset('storage/'.$items->lampiran_lokasi) }}">DPR RI</a>
+                                @endif
+                            
                                 @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
+                                @if ($items->lampiran_lokasi)
                                 <a href="{{ asset('storage/'.$items->lampiran_lokasi) }}">DPRD PROV</a>
+                                @endif
+                             
                                 @endforeach
                             </td>
                         </tr>
