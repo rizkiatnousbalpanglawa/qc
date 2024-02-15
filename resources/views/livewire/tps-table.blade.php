@@ -144,9 +144,9 @@
                 </table>
             </div>
 
-            {{-- <div class="float-end">
+            <div class="float-end">
                 {{ $tps->links() }}
-            </div> --}}
+            </div>
         </div>
     </div>
 
