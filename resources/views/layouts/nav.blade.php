@@ -8,6 +8,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
+        @canany(['admin', 'tim_data', 'user'])
         <li class="{{ $dashboard_is_active ?? '' }}">
             <a href="{{ url('dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
@@ -16,6 +17,15 @@
             </a>
 
         </li>
+
+        <li class="{{ $tps_is_active ?? '' }}">
+            <a href="{{ url('tps') }}">
+                <div class="parent-icon"><i class='bx bxs-user-account'></i>
+                </div>
+                <div class="menu-title">TPS</div>
+            </a>
+        </li>
+        @endcanany
 
         @canany(['admin','tim_data'])
         <li class="menu-label">Data</li>
@@ -47,13 +57,6 @@
 
             </ul>
         </li>
-        <li class="{{ $tps_is_active ?? '' }}">
-            <a href="{{ url('tps') }}">
-                <div class="parent-icon"><i class='bx bxs-user-account'></i>
-                </div>
-                <div class="menu-title">TPS</div>
-            </a>
-        </li>
 
         <li class="menu-label">Setting</li>
         <li class="{{ $setting_is_active ?? '' }}">
@@ -69,6 +72,15 @@
                 <div class="parent-icon"><i class='bx bx-upload'></i>
                 </div>
                 <div class="menu-title">Upload C1</div>
+            </a>
+        </li>
+
+        <li class="menu-label">Laporan</li>
+        <li class="{{ $laporan_is_active ?? '' }}">
+            <a href="{{ url('laporan') }}">
+                <div class="parent-icon"><i class='bx bxs-file-pdf'></i>
+                </div>
+                <div class="menu-title">Laporan TPS</div>
             </a>
         </li>
         @endcanany

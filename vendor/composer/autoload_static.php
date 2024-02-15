@@ -676,7 +676,6 @@ class ComposerStaticInit0ddbb7edf402928dad9f6786ecae379c
         'App\\Http\\Livewire\\QuickCount\\Index' => __DIR__ . '/../..' . '/app/Http/Livewire/QuickCount/Index.php',
         'App\\Http\\Livewire\\QuickCount\\SaksiCreate' => __DIR__ . '/../..' . '/app/Http/Livewire/QuickCount/SaksiCreate.php',
         'App\\Http\\Livewire\\QuickCount\\SaksiTable' => __DIR__ . '/../..' . '/app/Http/Livewire/QuickCount/SaksiTable.php',
-        'App\\Http\\Livewire\\QuickCount\\ShowTps' => __DIR__ . '/../..' . '/app/Http/Livewire/QuickCount/ShowTps.php',
         'App\\Http\\Livewire\\TpsTable' => __DIR__ . '/../..' . '/app/Http/Livewire/TpsTable.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
 use App\Models\Pemilih;
 use App\Models\Pengusul;
 use App\Models\Pilihan;
+use App\Models\Regency;
 use App\Models\Tps;
 use App\Models\TpsPemilih;
+use App\Models\Village;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -20,44 +23,34 @@ class LaporanController extends Controller
             $query->where('village_id', $request->village_id);
         }
 
+        $data['tps'] = $query->orderBy('nomor_tps')
+            ->paginate('10');
 
-        $data['tps'] = $query->paginate(15);
+        $data['kabupaten'] = Regency::whereHas('province', function ($query) {
+            $query->where('name', 'SULAWESI SELATAN');
+        })->get();
+        $data['kelurahan'] = Village::get();
+        $data['kecamatan'] = District::get();
+        $data['dataTps'] = Tps::distinct('nomor_tps')->get();
         return view('laporan.index', $data);
     }
 
-    public function cetak(Tps $tps)
+    public function cetak(Request $request)
     {
-        $data['tps'] = $tps;
-        $data['pilihanPaket'] = Pilihan::where('tps_id', $tps->id)->where('pilihan', 'P')->distinct('tps_pemilih_id')->count();
-        $data['pilihanEsr'] = Pilihan::where('tps_id', $tps->id)->where('pilihan', 'E')->distinct('tps_pemilih_id')->count();
-        $data['pilihanYrk'] = Pilihan::where('tps_id', $tps->id)->where('pilihan', 'Y')->distinct('tps_pemilih_id')->count();
-        // $data['jumlahRelawanY'] = TpsPemilih::where('tps_id',$tps->id)->whereHas('komunitasAnggota')->whereHas('pilihan',function($query){
-        //     $query->where('pilihan','Y');
-        // })->count();
-        // $data['jumlahRelawanE'] = TpsPemilih::where('tps_id',$tps->id)->whereHas('komunitasAnggota')->whereHas('pilihan',function($query){
-        //     $query->where('pilihan','E');
-        // })->count();
-        // $data['jumlahRelawanP'] = TpsPemilih::where('tps_id',$tps->id)->whereHas('komunitasAnggota')->whereHas('pilihan',function($query){
-        //     $query->where('pilihan','P');
-        // })->count();
+        $query = Tps::orderBy('village_id')->orderBy('nomor_tps');
 
-        $data['pengusul'] = Pengusul::whereHas('pilihan', function ($query) use ($tps) {
-            $query->where('tps_id', $tps->id)
-                  ->whereIn('pilihan', ['Y', 'E', 'P']); 
-        })->withCount(['pilihan as jumlah_Y' => function ($query) use ($tps) {
-            $query->where('pilihan', 'Y')->where('tps_id',$tps->id); 
-        }, 'pilihan as jumlah_E' => function ($query) use ($tps) {
-            $query->where('pilihan', 'E')->where('tps_id',$tps->id); 
-        }, 'pilihan as jumlah_P' => function ($query) use ($tps) {
-            $query->where('pilihan', 'P')->where('tps_id',$tps->id); 
-        }])->get();
-        
+        if ($request->has('district_id')) {
+            $query->where('district_id', $request->district_id);
+        }
 
-        $data['pemilih'] = TpsPemilih::whereHas('pilihan')->where('tps_id',$tps->id)->with(['pilihan','pilihan.pengusul'])->orderBy('nama')->get();
+        $data['tps'] = $query->orderBy('nomor_tps')
+            ->get();
 
+        $data['kelurahan'] = Village::get();
+        $data['kecamatan'] = District::where('id',$request->district_id)->first();
 
         $pdf = Pdf::loadView('laporan.pdf', $data);
 
-        return $pdf->stream($tps->village->name."_TPS ".$tps->nomor_tps.".pdf");
+        return $pdf->stream('KECAMATAN_'.$data['kecamatan']->name .'.pdf');
     }
 }

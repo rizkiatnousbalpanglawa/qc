@@ -32,7 +32,6 @@ return array(
     'App\\Http\\Livewire\\QuickCount\\Index' => $baseDir . '/app/Http/Livewire/QuickCount/Index.php',
     'App\\Http\\Livewire\\QuickCount\\SaksiCreate' => $baseDir . '/app/Http/Livewire/QuickCount/SaksiCreate.php',
     'App\\Http\\Livewire\\QuickCount\\SaksiTable' => $baseDir . '/app/Http/Livewire/QuickCount/SaksiTable.php',
-    'App\\Http\\Livewire\\QuickCount\\ShowTps' => $baseDir . '/app/Http/Livewire/QuickCount/ShowTps.php',
     'App\\Http\\Livewire\\TpsTable' => $baseDir . '/app/Http/Livewire/TpsTable.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

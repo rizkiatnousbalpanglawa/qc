@@ -44,4 +44,11 @@ class SelectController extends Controller
 
         return response()->json($data);
     }
+
+    public function allDistrict()
+    {
+        $data = District::where('name','LIKE','%'.request('q').'%')->orderBy('name')->paginate(10);
+
+        return response()->json($data);
+    }
 }

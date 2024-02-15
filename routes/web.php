@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Master\CalegController;
 use App\Http\Controllers\Master\KabupatenKotaController;
 use App\Http\Controllers\Master\KecamatanController;
@@ -74,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/selectPartisipan', [SelectController::class, 'partisipan']);
     Route::get('/selectDistrict/{id}', [SelectController::class, 'district']);
     Route::get('/selectVillage/{id}', [SelectController::class, 'village']);
+    Route::get('/selectAllDistrict', [SelectController::class, 'allDistrict']);
+    
 
     // user profile
 
@@ -98,4 +101,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/upload-c1/{status}/edit/{tps}', [UploadC1Controller::class, 'edit']);
     Route::post('/upload-c1/{status}/edit/{tps}', [UploadC1Controller::class, 'update']);
+
+    // Laporan
+    // laporan tps
+    Route::get('/laporan', [LaporanController::class, 'index']);
+    Route::post('/laporan', [LaporanController::class, 'cetak']);
+    Route::get('/laporan/cetak/{tps}', [LaporanController::class, 'cetak']);
+    Route::get('/laporan-pengusul', [LaporanPengusulController::class, 'index']);
+    Route::post('/laporan-pengusul', [LaporanPengusulController::class, 'index']);
+    Route::get('/laporan-pengusul/cetak/{pengusul}', [LaporanPengusulController::class, 'cetak']);
 });

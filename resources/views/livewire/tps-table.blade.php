@@ -331,7 +331,7 @@
                 </table>
             </div>
 
-            <div class="float-end">
+            <div class="float-end d-none d-sm-block">
                 {{ $tps->links() }}
             </div>
         </div>
