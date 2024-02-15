@@ -36,19 +36,7 @@ Route::middleware('auth')->group(function () {
 
     // TPS
     Route::get('/tps', [TpsController::class, 'index']);
-    Route::post('/tps', [TpsController::class, 'index']);
-    Route::get('/tps/create', [TpsController::class, 'create']);
-    Route::post('/tps/create', [TpsController::class, 'store']);
-    Route::delete('/tps', [TpsController::class, 'destroy']);
-    Route::get('/tps/edit/{tps}', [TpsController::class, 'edit']);
-    Route::put('/tps/edit/{tps}', [TpsController::class, 'update']);
-    Route::get('/tps/show/{tps}', [TpsController::class, 'show']);
-    Route::post('/tps/show/{tps}', [TpsPemilihController::class, 'import_excel']);
-
-    Route::get('/tps/update/{tps}', [TpsPemilihController::class, 'updateKelurahan']);
-
-    Route::get('/tps/show/{tps}/pengusul/{pengusul}', [PengusulController::class, 'index']);
-
+   
     // Parpol
     Route::get('/parpol', [ParpolController::class, 'index']);
     Route::get('/parpol/create', [ParpolController::class, 'create']);

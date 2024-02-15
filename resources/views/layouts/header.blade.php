@@ -1,5 +1,5 @@
 <!--start header wrapper-->
-<header>
+<header class="d-print-none">
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand">
             <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>

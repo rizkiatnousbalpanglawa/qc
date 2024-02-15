@@ -17,14 +17,6 @@
                     </ol>
                 </nav>
             </div>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="{{ url('tps/create') }}" class="btn btn-primary">
-                        <i class='bx bx-plus mx-0'></i>
-                        Add
-                    </a>
-                </div>
-            </div>
         </div>
         <!--end breadcrumb-->
         <h6 class="mb-0 text-uppercase">Data DPT per TPS</h6>
