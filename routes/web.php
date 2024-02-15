@@ -101,7 +101,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/upload-c1/{status}/edit/{tps}', [UploadC1Controller::class, 'edit']);
     Route::post('/upload-c1/{status}/edit/{tps}', [UploadC1Controller::class, 'update']);
-
+   
     // Laporan
     // laporan tps
     Route::get('/laporan', [LaporanController::class, 'index']);
