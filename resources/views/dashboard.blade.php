@@ -175,7 +175,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->district->name }}</td>
                                     <td>
-                                        {{ $item->jumlah_suara }}
+                                        {{ number_format($item->jumlah_suara) }}
                                     </td>
                                 </tr>
                                 @empty
