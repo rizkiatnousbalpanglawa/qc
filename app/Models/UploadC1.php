@@ -30,4 +30,9 @@ class UploadC1 extends Model
     {
         return $this->belongsTo(Regency::class,'regency_id','id');
     }
+
+    public function caleg()
+    {
+        return $this->hasMany(SuaraCaleg::class,'kode','kode');
+    }
 }

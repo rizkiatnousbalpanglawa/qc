@@ -24,7 +24,7 @@ class TpsTable extends Component
 
     public function render()
     {
-        $query = Tps::with(['village', 'district', 'regency'])->orderBy('district_id')->orderBy('village_id');
+        $query = Tps::with(['village', 'district', 'regency','lampiran','lampiran.caleg'])->orderBy('district_id')->orderBy('village_id');
 
         if ($this->searchKab) {
             $query->whereHas('regency', function ($query) {

@@ -85,12 +85,12 @@
                             <th class="text-center">KECAMATAN</th>
                             <th class="text-center">KELURAHAN</th>
                             <th class="text-center">TPS</th>
-                            <th class="text-center">SUARA SAH</th>
-                            <th class="text-center">TIDAK SAH</th>
+                            <th class="text-center">ESR</th>
+                            <th class="text-center">YRK</th>
                             <th class="text-center">JUMLAH PEMILIH</th>
-                            <th class="text-center"> C1</th>
-                            <th class="text-center"> PLANO</th>
-                            <th class="text-center"> LOKASI</th>
+                            <th class="text-center">C1</th>
+                            <th class="text-center">PLANO</th>
+                            <th class="text-center">LOKASI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,18 +101,12 @@
                             <td class="text-center align-middle">{{ $item->nomor_tps }}</td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',1) as $items)
-                                DPR RI = {{ $items->suara_sah }} <br>
-                                @endforeach
-                                @foreach ($item->lampiran->where('status',2) as $items)
-                                DPRD PROV = {{ $items->suara_sah }} <br>
+                                {{ $items->caleg->where('caleg_id',3)->sum('jumlah_suara') }}
                                 @endforeach
                             </td>
                             <td class="text-center align-middle">
-                                @foreach ($item->lampiran->where('status',1) as $items)
-                                DPR RI = {{ $items->suara_tidak_sah }} <br>
-                                @endforeach
                                 @foreach ($item->lampiran->where('status',2) as $items)
-                                DPRD PROV = {{ $items->suara_tidak_sah }} <br>
+                                {{ $items->caleg->where('caleg_id',10)->sum('jumlah_suara') }}
                                 @endforeach
                             </td>
                             <td class="text-center align-middle">
