@@ -172,7 +172,8 @@
                             <tbody>
                                 @forelse ($kecTerbanyak as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ ($kecTerbanyak->currentPage() - 1) * $kecTerbanyak->perPage() +
+                                        $loop->iteration }}</td>
                                     <td>{{ $item->district->name }}</td>
                                     <td>
                                         {{ number_format($item->jumlah_suara) }}
@@ -212,7 +213,8 @@
                             <tbody>
                                 @forelse ($kecTerbanyak_dprd as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ ($kecTerbanyak_dprd->currentPage() - 1) * $kecTerbanyak_dprd->perPage() +
+                                        $loop->iteration }}</td>
                                     <td>{{ $item->district->name }}</td>
                                     <td>
                                         @if (auth()->user()->role == 'admin')
