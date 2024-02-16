@@ -187,7 +187,9 @@
                         </table>
     
                         {{-- <div id="container_esr" style="width:100%; height:250px;"></div> --}}
-    
+                        <div class="float-end d-none d-sm-block">
+                            {{ $kecTerbanyak->links() }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -231,7 +233,10 @@
                         </table>
     
                         {{-- <div id="container_yrk" style="width:100%; height:250px;"></div> --}}
-    
+                        <div class="float-end d-none d-sm-block">
+                            {{ $kecTerbanyak_dprd->links() }}
+                        </div>
+
                     </div>
                 </div>
             </div>
