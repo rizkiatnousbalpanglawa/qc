@@ -72,14 +72,14 @@ class DashboardController extends Controller
             ->where('caleg_id','3')
             ->groupBy('district_id')
             ->orderByDesc('jumlah_suara')
-            ->paginate('8');
+            ->paginate(10, ['*'], 'kecTerbanyak');
         
         $data['kecTerbanyak_dprd'] = SuaraCaleg::select('district_id',DB::raw('SUM(jumlah_suara) as jumlah_suara'))
             ->with('district')
             ->where('caleg_id','10')
             ->groupBy('district_id')
             ->orderByDesc('jumlah_suara')
-            ->paginate('8');      
+            ->paginate(10, ['*'], 'kecTerbanyak_dprd');
       
         return view('dashboard',$data);
     }
