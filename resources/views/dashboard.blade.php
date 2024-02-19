@@ -30,11 +30,11 @@
                                     <div class="mt-2 small">Realisasi</div>
                                     <div class="h6">
                                         @can('admin')
-                                        {{-- {{ number_format($realisasi_esr) }} --}}
-                                        51,389
+                                        {{ number_format($realisasi_esr) }}
+                                        {{-- 51,389 --}}
                                         @elsecan('user')
-                                        {{-- {{ number_format($realisasi_esr*6/7) }} --}}
-                                        51,389
+                                        {{ number_format($realisasi_esr*6/7) }}
+                                        {{-- 51,389 --}}
                                         @endcan
                                     </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
@@ -58,17 +58,17 @@
                                                 <td>{{ $item->caleg->nama }}</td>
                                                 <td class="align-middle">
                                                     @can('admin')
-                                                    {{-- {{ number_format($item->total_suara) }} --}}
-                                                    @if ($item->caleg->id == 3)
+                                                    {{ number_format($item->total_suara) }}
+                                                    {{-- @if ($item->caleg->id == 3)
                                                     51,389
                                                     @else
                                                     {{ number_format($item->total_suara) }}
-                                                    @endif
+                                                    @endif --}}
                                                     @elsecan('user')
                                                 
                                                     @if ($item->caleg->id == 3)
-                                                    {{-- {{ number_format($item->total_suara*6/7) }} --}}
-                                                    51,389
+                                                    {{ number_format($item->total_suara*6/7) }}
+                                                    {{-- 51,389 --}}
                                                     @else
                                                     {{ number_format($item->total_suara) }}
                                                     @endif
