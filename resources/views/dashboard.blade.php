@@ -16,7 +16,8 @@
                     <div class="card-body">
                         <div class="">
                             <span class="h6 border-5 border-start ps-1 border-warning">DPR RI SUL-SEL 3</span>
-                            <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span> </span>
+                            {{-- <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span> </span> --}}
+                            <span class="float-end fst-italic">Data Masuk <span class="fw-bold">89.72%</span> </span>
                         </div>
                         <hr class="my-1">
                         <div class="row">
@@ -29,9 +30,11 @@
                                     <div class="mt-2 small">Realisasi</div>
                                     <div class="h6">
                                         @can('admin')
-                                        {{ number_format($realisasi_esr) }}
+                                        {{-- {{ number_format($realisasi_esr) }} --}}
+                                        51,389
                                         @elsecan('user')
-                                        {{ number_format($realisasi_esr*6/7) }}
+                                        {{-- {{ number_format($realisasi_esr*6/7) }} --}}
+                                        51,389
                                         @endcan
                                     </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
@@ -55,11 +58,17 @@
                                                 <td>{{ $item->caleg->nama }}</td>
                                                 <td class="align-middle">
                                                     @can('admin')
+                                                    {{-- {{ number_format($item->total_suara) }} --}}
+                                                    @if ($item->caleg->id == 3)
+                                                    51,389
+                                                    @else
                                                     {{ number_format($item->total_suara) }}
+                                                    @endif
                                                     @elsecan('user')
                                                 
                                                     @if ($item->caleg->id == 3)
-                                                    {{ number_format($item->total_suara*6/7) }}
+                                                    {{-- {{ number_format($item->total_suara*6/7) }} --}}
+                                                    51,389
                                                     @else
                                                     {{ number_format($item->total_suara) }}
                                                     @endif
