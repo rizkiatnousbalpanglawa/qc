@@ -58,8 +58,8 @@
                             <option value="">--SEMUA DATA--</option>
                             <option value="1">DPR RI SUL-SEL 3</option>
                             <option value="2">DPRD PROV SUL-SEL 10</option>
-                            <option value="97">TPS TANPA DPR RI</option>
-                            <option value="98">TPS TANPA DPRD PROV</option>
+                            {{-- <option value="97">TPS TANPA DPR RI</option>
+                            <option value="98">TPS TANPA DPRD PROV</option> --}}
                             <option value="99">DATA TPS KOSONG</option>
                         </select>
                     </div>
