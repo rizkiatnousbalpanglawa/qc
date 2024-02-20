@@ -32,19 +32,12 @@
                                     <div class="mt-2 small">Realisasi</div>
                                     <div class="h6">
                                         @if (auth()->user()->role == 'admin')
-                                        {{ number_format($item->total_suara) }}
+                                        {{ number_format($realisasi_esr) }}
                                         @else
                                         {{-- {{ number_format($item->total_suara*6/7) }} --}}
                                         52,098
                                         @endif
-                                        @can('admin')
-                                        {{ number_format($realisasi_esr) }}
-                                        {{-- 51,389 --}}
-                                        @elsecan('user','tim_data')
-                                        {{-- {{ number_format($realisasi_esr*6/7) }} --}}
-                                        52,098
-                                        {{-- 51,389 --}}
-                                        @endcan
+                                       
                                     </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
                                     <div class="h6">
