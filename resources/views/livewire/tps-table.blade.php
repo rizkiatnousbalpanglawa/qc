@@ -58,19 +58,12 @@
                             <option value="">--SEMUA DATA--</option>
                             <option value="1">DPR RI SUL-SEL 3</option>
                             <option value="2">DPRD PROV SUL-SEL 10</option>
+                            {{-- <option value="97">TPS TANPA DPR RI</option>
+                            <option value="98">TPS TANPA DPRD PROV</option> --}}
                             <option value="99">DATA TPS KOSONG</option>
                         </select>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4">
-                    <div class="mb-3" wire:ignore>
-                        <select name="" id="" class="form-select select_pilihan" wire:model='searchPilihan'>
-                            <option value="">--SEMUA DATA--</option>
-                            <option value="1">DPR RI SUL-SEL 3</option>
-                            <option value="2">DPRD PROV SUL-SEL 10</option>
-                        </select>
-                    </div>
-                </div> --}}
 
             </div>
 
@@ -324,10 +317,25 @@
                     </tbody>
                 </table>
             </div>
+            @canany(['admin'])
+            <div class="row">
+                <div class="col-lg-6">
+                    Total Pilihan ESR : <span class="fw-bold">{{ number_format($totalEsr) }}</span> <br>
+                    Total Pilihan YRK : <span class="fw-bold">{{ number_format($totalYrk) }}</span>
+                </div>
+                <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                    <!-- Tampilan untuk Desktop (lebar layar lebih dari 768px) -->
+                    <div class="d-none d-sm-block">
+                        {{ $tps->links() }}
+                    </div>
 
-            <div class="float-end d-none d-sm-block">
-                {{ $tps->links() }}
+                </div>
+
+
             </div>
+            @endcanany
+
+
         </div>
     </div>
 

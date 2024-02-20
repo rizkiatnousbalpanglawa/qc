@@ -31,6 +31,11 @@ class Tps extends Model
         return $this->hasMany(UploadC1::class,'tps_id','id');
     }
 
+    public function suaraCaleg()
+    {
+        return $this->hasMany(SuaraCaleg::class,'tps_id','id');
+    }
+
     public function upload()
     {
         return $this->hasMany(UploadC1::class,'tps_id','id');

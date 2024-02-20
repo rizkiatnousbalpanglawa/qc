@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\District;
 use App\Models\Regency;
+use App\Models\SuaraCaleg;
 use App\Models\Tps;
 use App\Models\UploadC1;
 use App\Models\Village;
@@ -24,11 +25,21 @@ class TpsTable extends Component
 
     public function render()
     {
-        $query = Tps::with(['village', 'district', 'regency','lampiran','lampiran.caleg'])->orderBy('district_id')->orderBy('village_id');
+        $query = Tps::with(['village', 'district', 'regency', 'lampiran', 'lampiran.caleg', 'suaraCaleg'])->orderBy('district_id')->orderBy('village_id');
+        $queryEsr = SuaraCaleg::where('caleg_id', '3');
+        $queryYrk = SuaraCaleg::where('caleg_id', '10');
 
         if ($this->searchKab) {
             $query->whereHas('regency', function ($query) {
                 $query->where('id', $this->searchKab);
+            });
+
+            $queryEsr->whereHas('regency', function ($queryEsr) {
+                $queryEsr->where('id', $this->searchKab);
+            });
+
+            $queryYrk->whereHas('regency', function ($queryYrk) {
+                $queryYrk->where('id', $this->searchKab);
             });
         }
 
@@ -36,34 +47,82 @@ class TpsTable extends Component
             $query->whereHas('district', function ($query) {
                 $query->where('id', $this->searchKec);
             });
+            $queryEsr->whereHas('district', function ($queryEsr) {
+                $queryEsr->where('id', $this->searchKec);
+            });
+            $queryYrk->whereHas('district', function ($queryYrk) {
+                $queryYrk->where('id', $this->searchKec);
+            });
         }
         if ($this->searchKel) {
             $query->whereHas('village', function ($query) {
                 $query->where('id', $this->searchKel);
             });
+            $queryEsr->whereHas('village', function ($queryEsr) {
+                $queryEsr->where('id', $this->searchKel);
+            });
+            $queryYrk->whereHas('village', function ($queryYrk) {
+                $queryYrk->where('id', $this->searchKel);
+            });
         }
 
         if ($this->searchTps) {
             $query->where('nomor_tps', $this->searchTps);
+
+            $queryEsr->whereHas('tps', function ($queryEsr) {
+                $queryEsr->where('nomor_tps', $this->searchTps);
+            });
+
+            $queryYrk->whereHas('tps', function ($queryYrk) {
+                $queryYrk->where('nomor_tps', $this->searchTps);
+            });
         }
 
         if ($this->searchData) {
             if ($this->searchData == 99) {
                 $query->doesntHave('lampiran');
-            }else {
+            } 
+            
+            // elseif ($this->searchData == 97) {
+            //     $query->where('lampiran', function ($query) {
+            //         $query->where('status','!=',2);
+            //     });
+
+                // $queryEsr->where('lampiran', function ($queryEsr) {
+                //     $queryEsr->where('status', 2);
+                // });
+    
+                // $queryYrk->where('lampiran', function ($queryYrk) {
+                //     $queryYrk->where('status', 0);
+                // });
+            // }
+            
+            else {
                 $query->whereHas('lampiran', function ($query) {
                     $query->where('status', $this->searchData);
                 });
+
+                $queryEsr->whereHas('lampiran', function ($queryEsr) {
+                    $queryEsr->where('status', $this->searchData);
+                });
+    
+                $queryYrk->whereHas('lampiran', function ($queryYrk) {
+                    $queryYrk->where('status', $this->searchData);
+                });
             }
-           
         }
 
         $data['tps'] = $query->orderBy('nomor_tps')
             ->paginate('10');
 
+        $data['totalEsr'] = $queryEsr->sum('jumlah_suara');
+
+        $data['totalYrk'] = $queryYrk->sum('jumlah_suara');
+
         $data['kabupaten'] = Regency::whereHas('province', function ($query) {
             $query->where('name', 'SULAWESI SELATAN');
         })->get();
+
         $data['kelurahan'] = Village::get();
         $data['kecamatan'] = District::get();
         $data['dataTps'] = Tps::distinct('nomor_tps')->get();
