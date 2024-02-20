@@ -7,17 +7,19 @@
 @section("wrapper")
 <div class="page-wrapper">
     <div class="page-content">
-       
+
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
-    
+
             <div class="col">
                 <div class="card radius-10 small">
                     <div class="card-body">
                         <div class="">
                             <span class="h6 border-5 border-start ps-1 border-warning">DPR RI SUL-SEL 3</span>
-                            <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr / $totalTps * 100,2) }}%</span> </span>
-                            {{-- <span class="float-end fst-italic">Data Masuk <span class="fw-bold">89.72%</span> </span> --}}
+                            <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dpr
+                                    / $totalTps * 100,2) }}%</span> </span>
+                            {{-- <span class="float-end fst-italic">Data Masuk <span class="fw-bold">89.72%</span>
+                            </span> --}}
                         </div>
                         <hr class="my-1">
                         <div class="row">
@@ -29,6 +31,12 @@
                                     <div class="h6">60,000</div>
                                     <div class="mt-2 small">Realisasi</div>
                                     <div class="h6">
+                                        @if (auth()->user()->role == 'admin')
+                                        {{ number_format($item->total_suara) }}
+                                        @else
+                                        {{-- {{ number_format($item->total_suara*6/7) }} --}}
+                                        52,098
+                                        @endif
                                         @can('admin')
                                         {{ number_format($realisasi_esr) }}
                                         {{-- 51,389 --}}
@@ -58,45 +66,41 @@
                                             <tr class="@if($item->caleg_id == 3) bg-warning fw-bold @endif text-center">
                                                 <td>{{ $item->caleg->nama }}</td>
                                                 <td class="align-middle">
-                                                    @can('admin')
+                                                    @if (auth()->user()->role == 'admin')
                                                     {{ number_format($item->total_suara) }}
-                                                    {{-- @if ($item->caleg->id == 3)
-                                                    51,389
                                                     @else
-                                                    {{ number_format($item->total_suara) }}
-                                                    @endif --}}
-                                                    @elsecan('user','tim_data')
-                                                
                                                     @if ($item->caleg->id == 3)
                                                     {{-- {{ number_format($item->total_suara*6/7) }} --}}
                                                     52,098
-                                                    {{-- 51,389 --}}
                                                     @else
                                                     {{ number_format($item->total_suara) }}
                                                     @endif
-                                                    @endcan
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div class="float-end fst-italic my-0">Diperbarui {{ $terahirUpdateDpr->created_at->diffForHumans() }}</div>
+                                    <div class="float-end fst-italic my-0">Diperbarui {{
+                                        $terahirUpdateDpr->created_at->diffForHumans() }}</div>
                                 </div>
                             </div>
                         </div>
-    
-    
+
+
                     </div>
                 </div>
             </div>
-    
+
             <div class="col">
                 <div class="card radius-10 small">
                     <div class="card-body">
                         <div class="">
                             <span class="h6 border-5 border-start ps-1 border-primary">DPRD PROV SUL-SEL 10</span>
-                            <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dprd / $totalTps * 100,2) }}%</span></span>
-    
+                            <span class="float-end fst-italic">Data Masuk <span class="fw-bold">{{ round($jumlahTps_dprd
+                                    / $totalTps * 100,2) }}%</span></span>
+
                         </div>
                         <hr class="my-1">
                         <div class="row">
@@ -110,15 +114,15 @@
                                     <div class="h6">
                                         @if (auth()->user()->role == 'admin')
                                         {{ number_format($realisasi_yrk) }}
-                                            
+
                                         @else
                                         {{-- {{ number_format($realisasi_yrk*3/4) }} --}}
-                                            12,790
+                                        12,790
                                         @endif
                                     </div>
                                     <div class="mt-2 small">Realisasi Suara Partai</div>
                                     <div class="h6">{{ number_format($realisasi_partai_yrk) }}</div>
-    
+
                                 </div>
                             </div>
                             <div class="col">
@@ -145,32 +149,34 @@
                                                     @else
                                                     {{ number_format($item->total_suara) }}
                                                     @endif
-                                                   
+
                                                     @endif
                                                 </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div class="float-end fst-italic my-0">Diperbarui {{ $terahirUpdateDprd->created_at->diffForHumans() }}</div>
-    
+                                    <div class="float-end fst-italic my-0">Diperbarui {{
+                                        $terahirUpdateDprd->created_at->diffForHumans() }}</div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
         </div>
-    
-    
+
+
         <div class="row">
-    
+
             <div class="col-lg-6">
                 <div class="card radius-10">
                     <div class="card-body">
                         <div class="">
-                            <span class="h6 border-5 border-start ps-1 border-warning">PEMILIH BERDASARKAN KECAMATAN</span>
+                            <span class="h6 border-5 border-start ps-1 border-warning">PEMILIH BERDASARKAN
+                                KECAMATAN</span>
                         </div>
                         <hr class="my-1">
                         <table class="table table-sm">
@@ -184,7 +190,8 @@
                             <tbody>
                                 @forelse ($kecTerbanyak as $item)
                                 <tr>
-                                    <td class="text-center">{{ ($kecTerbanyak->currentPage() - 1) * $kecTerbanyak->perPage() +
+                                    <td class="text-center">{{ ($kecTerbanyak->currentPage() - 1) *
+                                        $kecTerbanyak->perPage() +
                                         $loop->iteration }}</td>
                                     <td>{{ $item->district->name }}</td>
                                     <td>
@@ -198,7 +205,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-    
+
                         {{-- <div id="container_esr" style="width:100%; height:250px;"></div> --}}
                         <div class="float-end d-none d-sm-block">
                             {{ $kecTerbanyak->links() }}
@@ -206,12 +213,13 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="col-lg-6">
                 <div class="card radius-10">
                     <div class="card-body">
                         <div class="">
-                            <span class="h6 border-5 border-start ps-1 border-primary">PEMILIH BERDASARKAN KECAMATAN</span>
+                            <span class="h6 border-5 border-start ps-1 border-primary">PEMILIH BERDASARKAN
+                                KECAMATAN</span>
                         </div>
                         <hr class="my-1">
                         <table class="table table-sm">
@@ -225,16 +233,17 @@
                             <tbody>
                                 @forelse ($kecTerbanyak_dprd as $item)
                                 <tr>
-                                    <td class="text-center">{{ ($kecTerbanyak_dprd->currentPage() - 1) * $kecTerbanyak_dprd->perPage() +
+                                    <td class="text-center">{{ ($kecTerbanyak_dprd->currentPage() - 1) *
+                                        $kecTerbanyak_dprd->perPage() +
                                         $loop->iteration }}</td>
                                     <td>{{ $item->district->name }}</td>
                                     <td>
                                         @if (auth()->user()->role == 'admin')
                                         {{ number_format($item->jumlah_suara) }}
-                                            
+
                                         @else
                                         {{ number_format($item->jumlah_suara*3/4) }}
-                                            
+
                                         @endif
                                     </td>
                                 </tr>
@@ -245,7 +254,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-    
+
                         {{-- <div id="container_yrk" style="width:100%; height:250px;"></div> --}}
                         <div class="float-end d-none d-sm-block">
                             {{ $kecTerbanyak_dprd->links() }}
@@ -254,10 +263,10 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
         </div>
-    
+
         <script>
             // Inisialisasi chart
             var chart = Highcharts.chart('container_esr', {
@@ -313,10 +322,9 @@
                 }]
             });
         </script>
-   
+
         {{-- @livewire('dashboard') --}}
 
     </div>
 </div>
 @endsection
-

@@ -83,10 +83,10 @@ class TpsTable extends Component
                 $query->doesntHave('lampiran');
             } 
             
-            // elseif ($this->searchData == 97) {
-            //     $query->where('lampiran', function ($query) {
-            //         $query->where('status','!=',2);
-            //     });
+            elseif ($this->searchData == 97) {
+                $query->where('lampiran', function ($query) {
+                    $query->where('status','!=',2);
+                });
 
                 // $queryEsr->where('lampiran', function ($queryEsr) {
                 //     $queryEsr->where('status', 2);
@@ -95,7 +95,7 @@ class TpsTable extends Component
                 // $queryYrk->where('lampiran', function ($queryYrk) {
                 //     $queryYrk->where('status', 0);
                 // });
-            // }
+            }
             
             else {
                 $query->whereHas('lampiran', function ($query) {
