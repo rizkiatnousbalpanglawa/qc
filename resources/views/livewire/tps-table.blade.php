@@ -5,7 +5,6 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="mb-3" wire:ignore>
-                        {{-- <label for="" class="form-label">Kabupaten / Kota</label> --}}
                         <select name="" id="" class="form-select select_kab_kota" wire:model='searchKab'>
                             <option value="">--SEMUA KAB/KOTA--</option>
                             @foreach ($kabupaten as $item)
@@ -18,7 +17,6 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3" wire:ignore>
-                        {{-- <label for="" class="form-label">Kecamatan</label> --}}
                         <select name="" id="" class="form-select select_kec" wire:model='searchKec'>
                             <option value="">--SEMUA KECAMATAN--</option>
                             @foreach ($kecamatan as $item)
@@ -30,7 +28,6 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mb-3" wire:ignore>
-                        {{-- <label for="" class="form-label">Kelurahan</label> --}}
                         <select name="" id="" class="form-select select_kel" wire:model='searchKel'>
                             <option value="">--SEMUA KELURAHAN--</option>
                             @foreach ($kelurahan as $item)
@@ -41,7 +38,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3" wire:ignore>
-                        {{-- <label for="" class="form-label">TPS</label> --}}
                         <select name="" id="" class="form-select select_tps" wire:model='searchTps'>
                             <option value="">--SEMUA TPS--</option>
                             @foreach ($dataTps->unique('nomor_tps')->sortBy('nomor_tps') as $item)
@@ -53,17 +49,27 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3" wire:ignore>
-                        {{-- <label for="" class="form-label">Pilihan</label> --}}
                         <select name="" id="" class="form-select select_pilihan" wire:model='searchData'>
                             <option value="">--SEMUA DATA--</option>
                             <option value="1">DPR RI SUL-SEL 3</option>
                             <option value="2">DPRD PROV SUL-SEL 10</option>
+                            {{-- <option value="0">TPS TANPA DPR RI</option>
+                            <option value="0">TPS TANPA DPRD PROV</option> --}}
                             <option value="97">TPS TANPA DPR RI</option>
                             <option value="98">TPS TANPA DPRD PROV</option>
                             <option value="99">DATA TPS KOSONG</option>
                         </select>
                     </div>
                 </div>
+                {{-- <div class="col-lg-4">
+                    <div class="mb-3" wire:ignore>
+                        <select name="" id="" class="form-select select_kondisi" wire:model='searchKondisi'>
+                            <option value="">--SEMUA DATA--</option>
+                            <option value="99">DATA TPS KOSONG</option>
+
+                        </select>
+                    </div>
+                </div> --}}
 
             </div>
 
@@ -93,9 +99,11 @@
                             <td class="text-center align-middle">{{ $item->village->name }}</td>
                             <td class="text-center align-middle">{{ $item->nomor_tps }}</td>
                             <td class="text-center align-middle">
-                                @foreach ($item->lampiran->where('status',1) as $items)
+                                @forelse ($item->lampiran->where('status',1) as $items)
                                 {{ $items->caleg->where('caleg_id',3)->sum('jumlah_suara') }}
-                                @endforeach
+                                @empty
+                                
+                                @endforelse
                             </td>
                             <td class="text-center align-middle">
                                 @foreach ($item->lampiran->where('status',2) as $items)
@@ -320,8 +328,9 @@
             @canany(['admin'])
             <div class="row">
                 <div class="col-lg-6">
-                    Total Pilihan ESR : <span class="fw-bold">{{ number_format($totalEsr) }}</span> <br>
-                    Total Pilihan YRK : <span class="fw-bold">{{ number_format($totalYrk) }}</span>
+                    Total TPS : <span class="fw-bold">{{ number_format($totalTps) }}</span> <br>
+                    Total Pemilih ESR : <span class="fw-bold">{{ number_format($totalEsr) }}</span> <br>
+                    Total Pemilih YRK : <span class="fw-bold">{{ number_format($totalYrk) }}</span>
                 </div>
                 <div class="col-lg-6 d-flex align-items-center justify-content-center">
                     <!-- Tampilan untuk Desktop (lebar layar lebih dari 768px) -->
@@ -376,10 +385,10 @@
             var data = $('.select_status').select2("val");
             @this.set('searchStatus', data);
         });
-        $('.select_pengusul').select2();
-        $('.select_pengusul').on('change', function (e) {
-            var data = $('.select_pengusul').select2("val");
-            @this.set('searchPengusul', data);
+        $('.select_kondisi').select2();
+        $('.select_kondisi').on('change', function (e) {
+            var data = $('.select_kondisi').select2("val");
+            @this.set('searchKondisi', data);
         });
 
     });

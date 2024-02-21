@@ -22,6 +22,7 @@ class TpsTable extends Component
     public $searchKel;
     public $searchTps;
     public $searchData;
+    public $searchKondisi;
 
     public function render()
     {
@@ -78,23 +79,42 @@ class TpsTable extends Component
             });
         }
 
+        // if ($this->searchKondisi) {
+        //     $query->doesntHave('lampiran');
+        //     $queryEsr->doesntHave('lampiran');
+        //     $queryYrk->doesntHave('lampiran');
+        // }
+
         if ($this->searchData) {
             if ($this->searchData == 99) {
                 $query->doesntHave('lampiran');
             } 
             
             elseif ($this->searchData == 97) {
-                $query->where('lampiran', function ($query) {
-                    $query->where('status','!=',2);
+                $query->whereDoesntHave('lampiran', function ($query) {
+                    $query->where('status',1);
                 });
 
-                // $queryEsr->where('lampiran', function ($queryEsr) {
-                //     $queryEsr->where('status', 2);
-                // });
-    
-                // $queryYrk->where('lampiran', function ($queryYrk) {
-                //     $queryYrk->where('status', 0);
-                // });
+                $queryEsr->whereDoesntHave('lampiran', function ($queryEsr) {
+                    $queryEsr->where('status',1);
+                });
+
+                $queryYrk->whereDoesntHave('lampiran', function ($queryYrk) {
+                    $queryYrk->where('status',1);
+                });
+            }
+            elseif ($this->searchData == 98) {
+                $query->whereDoesntHave('lampiran', function ($query) {
+                    $query->where('status',2);
+                });
+
+                $queryEsr->whereDoesntHave('lampiran', function ($queryEsr) {
+                    $queryEsr->where('status',2);
+                });
+
+                $queryYrk->whereDoesntHave('lampiran', function ($queryYrk) {
+                    $queryYrk->where('status',2);
+                });
             }
             
             else {
@@ -112,6 +132,7 @@ class TpsTable extends Component
             }
         }
 
+        $data['totalTps'] =  $query->count();
         $data['tps'] = $query->orderBy('nomor_tps')
             ->paginate('10');
 
