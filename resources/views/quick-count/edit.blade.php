@@ -44,7 +44,6 @@
                     <input type="hidden" name="kode" value="{{ $c1->kode }}">
                     <div class="row">
                         <div class="col-lg-6">
-                            @if (!$c1->lampiran_c1)
                             <div class="mb-3">
                                 <label class="form-label">FILE C1</label>
                                 <input type="file" name="lampiran_c1"
@@ -55,8 +54,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            @endif
-                            @if (!$c1->lampiran_plano)
+                          
                             <div class="mb-3">
                                 <label class="form-label">PLANO</label>
                                 <input type="file" name="lampiran_plano"
@@ -67,8 +65,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            @endif
-                            @if (!$c1->lampiran_lokasi)
+                        
                             <div class="mb-3">
                                 <label class="form-label">LOKASI</label>
                                 <input type="file" name="lampiran_lokasi"
@@ -79,7 +76,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            @endif
+                        
                         </div>
                         <div class="col-lg-6">
                             {{-- <div class="mb-3">

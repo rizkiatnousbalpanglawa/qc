@@ -122,7 +122,6 @@ class UploadC1Controller extends Controller
         $caleg = Caleg::where('status', $status)->get();
         foreach ($caleg as $value) {
             $suaraCaleg['user_id'] = auth()->user()->id;
-            // $suaraCaleg['saksi_id'] = $saksi->id;
             $suaraCaleg['regency_id'] = $tps->regency_id;
             $suaraCaleg['district_id'] = $tps->district_id;
             $suaraCaleg['village_id'] = $tps->village_id;
@@ -140,7 +139,6 @@ class UploadC1Controller extends Controller
             SuaraParpol::where('kode', $kode)->delete();
             foreach ($parpol as $value) {
                 $suaraParpol['user_id'] = auth()->user()->id;
-                // $suaraParpol['saksi_id'] = $saksi->id;
                 $suaraParpol['regency_id'] = $tps->regency_id;
                 $suaraParpol['district_id'] = $tps->district_id;
                 $suaraParpol['village_id'] = $tps->village_id;
