@@ -235,7 +235,7 @@
                                         {{ number_format($item->jumlah_suara) }}
 
                                         @else
-                                        {{ number_format($item->jumlah_suara*3/4) }}
+                                        {{ number_format($item->jumlah_suara) }}
 
                                         @endif
                                     </td>
