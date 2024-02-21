@@ -146,7 +146,7 @@
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_c1)
                                 <!-- Button trigger modal -->
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#dprdc{{ $items->id }}">
+                               <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdc{{ $items->id }}">
                                     DPRD PROV
                                 </a>
 
@@ -213,7 +213,7 @@
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_plano)
                                 <!-- Button trigger modal -->
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#dprdp{{ $items->id }}">
+                               <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdp{{ $items->id }}">
                                     DPRD PROV
                                 </a>
 
@@ -281,7 +281,7 @@
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_lokasi)
                                 <!-- Button trigger modal -->
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#dprdlok{{ $items->id }}">
+                               <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdlok{{ $items->id }}">
                                     DPRD PROV
                                 </a>
 
