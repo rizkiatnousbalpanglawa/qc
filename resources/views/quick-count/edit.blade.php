@@ -39,7 +39,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post" class="form-prevent-multiple-submits" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="kode" value="{{ $c1->kode }}">
                     <div class="row">
@@ -173,7 +173,7 @@
 
                     <div class="text-end">
                         {{-- <button type="reset" class="btn">Reset</button> --}}
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-plus mx-0 p-0'></i>
+                        <button type="submit" class="btn btn-primary button-prevent-multiple-submits"><i class='bx bx-plus mx-0 p-0'></i>
                             Save</button>
                     </div>
 
@@ -188,6 +188,12 @@
 
 @section('script')
 <script>
+     $(document).ready(function(){
+         $('.form-prevent-multiple-submits').on('submit', function(){
+            $('.button-prevent-multiple-submits').attr('disabled','true')
+         })
+    });
+
     function hanyaAngka(evt) {
       var charCode = (evt.which) ? evt.which : event.keyCode
        if (charCode > 31 && (charCode < 48 || charCode > 57))

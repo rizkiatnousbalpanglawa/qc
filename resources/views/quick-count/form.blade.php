@@ -36,7 +36,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" class="form-prevent-multiple-submits" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6">
@@ -150,7 +150,7 @@
 
 
                     <div class="text-end">
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-plus mx-0 p-0'></i>
+                        <button type="submit" class="btn btn-primary button-prevent-multiple-submits"><i class='bx bx-plus mx-0 p-0'></i>
                             Save</button>
                     </div>
 
@@ -162,16 +162,14 @@
     </div>
 </div>
 <!--end page wrapper -->
+@section('script')
+<script>
+    $(document).ready(function(){
+         $('.form-prevent-multiple-submits').on('submit', function(){
+            $('.button-prevent-multiple-submits').attr('disabled','true')
+         })
+    });
+</script>
 @endsection
 
-{{-- @section('script')
-<script>
-    function hanyaAngka(evt) {
-      var charCode = (evt.which) ? evt.which : event.keyCode
-       if (charCode > 31 && (charCode < 48 || charCode > 57))
-    
-        return false;
-      return true;
-    }
-    </script>
-@endsection --}}
+@endsection

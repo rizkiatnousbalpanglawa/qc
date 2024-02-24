@@ -246,4 +246,17 @@ class UploadC1Controller extends Controller
         toast('Data berhasil disimpan!', 'success');
         return redirect('upload-c1/saksi/show?village_id='.$tps->village_id);
     }
+
+    public function delete(Request $request)
+    {
+        if ($request->hapus == 'esr') {
+            SuaraCaleg::where('tps_id',$request->tps_id)->where('status',1)->delete();
+            UploadC1::where('tps_id',$request->tps_id)->where('status',1)->delete();
+        } elseif ($request->hapus == 'yrk') {
+            SuaraCaleg::where('tps_id',$request->tps_id)->where('status',2)->delete();
+            UploadC1::where('tps_id',$request->tps_id)->where('status',2)->delete();
+        }
+        toast('Data berhasil dihapus!', 'success');
+        return back();
+    }
 }

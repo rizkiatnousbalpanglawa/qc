@@ -128,7 +128,13 @@
                                      
                                      
                                     @endif
-
+                                    <form action="" class="mt-2" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="hidden" name="tps_id" value="{{ $item->id }}">
+                                        <button type="submit" name="hapus" value="esr" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">HAPUS ESR</button>
+                                        <button type="submit" name="hapus" value="yrk" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">HAPUS YRK</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
