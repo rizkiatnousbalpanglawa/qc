@@ -252,9 +252,11 @@ class UploadC1Controller extends Controller
         if ($request->hapus == 'esr') {
             SuaraCaleg::where('tps_id',$request->tps_id)->where('status',1)->delete();
             UploadC1::where('tps_id',$request->tps_id)->where('status',1)->delete();
+            SuaraParpol::where('tps_id',$request->tps_id)->where('status',1)->delete();
         } elseif ($request->hapus == 'yrk') {
             SuaraCaleg::where('tps_id',$request->tps_id)->where('status',2)->delete();
             UploadC1::where('tps_id',$request->tps_id)->where('status',2)->delete();
+            SuaraParpol::where('tps_id',$request->tps_id)->where('status',2)->delete();
         }
         toast('Data berhasil dihapus!', 'success');
         return back();
