@@ -17,6 +17,14 @@
             </a>
 
         </li>
+        {{-- <li class="{{ $dashboard_is_active ?? '' }}">
+            <a href="{{ url('dashboard') }}">
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                </div>
+                <div class="menu-title">Dashboard_2</div>
+            </a>
+
+        </li> --}}
 
         <li class="{{ $tps_is_active ?? '' }}">
             <a href="{{ url('tps') }}">
@@ -72,6 +80,13 @@
                 <div class="parent-icon"><i class='bx bx-upload'></i>
                 </div>
                 <div class="menu-title">Upload C1</div>
+            </a>
+        </li>
+        <li class="{{ $upload_d1_is_active ?? '' }}">
+            <a href="{{ url('d1') }}">
+                <div class="parent-icon"><i class='bx bx-upload'></i>
+                </div>
+                <div class="menu-title">Upload D1</div>
             </a>
         </li>
 

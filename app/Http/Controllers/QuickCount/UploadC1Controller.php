@@ -22,6 +22,11 @@ class UploadC1Controller extends Controller
         return view('quick-count.index');
     }
 
+    public function create()
+    {
+        return view('quick-count.create');
+    }
+
     public function saksi($stat, Tps $tps)
     {
         $data['upload_c1_is_active'] = 'mm-active';

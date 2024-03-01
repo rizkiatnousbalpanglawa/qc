@@ -20,8 +20,16 @@ class ProvinsiController extends Controller
             'kode_prov' => 'required',
             'provinsi' => 'required'
         ]);
-        Provinsi::create($validated);
+        Province::create($validated);
         toast('Data berhasil tersimpan', 'success');
+        return back();
+    }
+
+    public function delete(Province $id)
+    {
+        $id->delete();
+
+        toast('Data berhasil terhapus','success');
         return back();
     }
 }

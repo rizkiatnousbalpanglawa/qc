@@ -13,14 +13,21 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{ url('upload-c1') }}">SAKSI</a></li>
+                        {{-- <li class="breadcrumb-item" aria-current="page"><a href="{{ url('upload-c1') }}">SAKSI</a></li> --}}
                         <li class="breadcrumb-item" aria-current="page">TPS</li>
                     </ol>
                 </nav>
             </div>
         </div>
         <!--end breadcrumb-->
-
+        <div class="ms-auto">
+            <div class="btn-group">
+                <a href="{{ url('/upload-c1/create') }}" class="btn btn-primary">
+                    <i class='bx bx-plus mx-0'></i>
+                    Add
+                </a>
+            </div>
+        </div>
         <hr />
 
 

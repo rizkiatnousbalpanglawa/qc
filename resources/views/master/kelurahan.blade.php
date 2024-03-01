@@ -20,14 +20,14 @@
                     </ol>
                 </nav>
             </div>
-            {{-- <div class="ms-auto">
+            <div class="ms-auto">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">
                         <i class='bx bx-plus mx-0'></i>
                         Add
                     </button>
                 </div>
-            </div> --}}
+            </div>
         </div>
         <!--end breadcrumb-->
         <h6 class="mb-0 text-uppercase">Data Kelurahan</h6>
@@ -69,12 +69,20 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
+                                <label for="" class="form-label">Kecamatan</label>
+                                <select name="regency_id" id="" class="form-select">
+                                    @foreach ($kecamatan->sortBy('id') as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label for="" class="form-label">Kode Kelurahan</label>
-                                <input type="text" class="form-control" name="kode_kel" placeholder="Contoh: KEL-001">
+                                <input type="text" class="form-control" name="id" placeholder="Contoh: KEL-001">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Kelurahan</label>
-                                <input type="text" class="form-control" name="kelurahan"
+                                <input type="text" class="form-control" name="name"
                                     placeholder="Contoh: Timika">
                             </div>
                         </div>

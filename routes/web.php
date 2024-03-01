@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\D1Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LaporanController;
@@ -43,7 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/export', [ExportController::class, 'index']);
     Route::post('/export', [ExportController::class, 'post']);
     Route::get('/export-tps', [ExportController::class, 'exportTps']);
-   
+
     // Parpol
     Route::get('/parpol', [ParpolController::class, 'index']);
     Route::get('/parpol/create', [ParpolController::class, 'create']);
@@ -82,7 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/selectDistrict/{id}', [SelectController::class, 'district']);
     Route::get('/selectVillage/{id}', [SelectController::class, 'village']);
     Route::get('/selectAllDistrict', [SelectController::class, 'allDistrict']);
-    
+
 
     // user profile
 
@@ -99,6 +100,7 @@ Route::middleware('auth')->group(function () {
     // Quick Count
     // Upload c1
     Route::get('/upload-c1', [UploadC1Controller::class, 'index']);
+    Route::get('/upload-c1/create', [UploadC1Controller::class, 'create']);
     Route::get('/upload-c1/saksi/show', [UploadC1Controller::class, 'showTps']);
     Route::post('/upload-c1/saksi/show', [UploadC1Controller::class, 'showTps']);
     Route::delete('/upload-c1/saksi/show', [UploadC1Controller::class, 'delete']);
@@ -107,7 +109,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/upload-c1/{status}/edit/{tps}', [UploadC1Controller::class, 'edit']);
     Route::post('/upload-c1/{status}/edit/{tps}', [UploadC1Controller::class, 'update']);
-   
+
+    Route::get('/d1', [D1Controller::class, 'index']);
+    Route::post('/d1', [D1Controller::class, 'store']);
+    Route::get('/d1/edit/{d1}', [D1Controller::class, 'edit']);
+    Route::patch('/d1/edit/{d1}', [D1Controller::class, 'update']);
+    Route::get('/d1/hapus/{d1}', [D1Controller::class, 'delete']);
+
     // Laporan
     // laporan tps
     Route::get('/laporan', [LaporanController::class, 'index']);

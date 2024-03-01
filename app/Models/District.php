@@ -28,6 +28,9 @@ class District extends Model
      */
     protected $table = 'districts';
 
+    public $timestamps = false;
+    protected $fillable=['id','regency_id','name'];
+
     /**
      * The attributes that should be hidden for arrays.
      *

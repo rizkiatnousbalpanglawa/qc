@@ -69,12 +69,20 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
+                                <label for="" class="form-label">Kabupaten / Kota</label>
+                                <select name="regency_id" id="" class="form-select">
+                                    @foreach ($kabupaten as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label for="" class="form-label">Kode Kecamatan</label>
-                                <input type="text" class="form-control" name="kode_kec" placeholder="Contoh: KEC-001">
+                                <input type="text" class="form-control" name="id" placeholder="Contoh: KEC-001">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Kecamatan</label>
-                                <input type="text" class="form-control" name="kecamatan"
+                                <input type="text" class="form-control" name="name"
                                     placeholder="Contoh: Timika">
                             </div>
                         </div>
