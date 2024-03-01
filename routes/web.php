@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Master\CalegController;
 use App\Http\Controllers\Master\KabupatenKotaController;
@@ -37,6 +38,11 @@ Route::middleware('auth')->group(function () {
 
     // TPS
     Route::get('/tps', [TpsController::class, 'index']);
+
+    // TPS
+    Route::get('/export', [ExportController::class, 'index']);
+    Route::post('/export', [ExportController::class, 'post']);
+    Route::get('/export-tps', [ExportController::class, 'exportTps']);
    
     // Parpol
     Route::get('/parpol', [ParpolController::class, 'index']);
