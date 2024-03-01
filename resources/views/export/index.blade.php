@@ -36,7 +36,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <button class="btn btn-primary" type="submit">
-                                    <i class="bx bxs-upload"></i>
+                                    <i class='bx bxs-file'></i>
                                     EXPORT
                                 </button>
                             </div>

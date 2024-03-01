@@ -87,7 +87,7 @@
         </li>
         <li class="{{ $export_is_active ?? '' }}">
             <a href="{{ url('export') }}">
-                <div class="parent-icon"><i class='bx bxs-file-pdf'></i>
+                <div class="parent-icon"><i class='bx bxs-file'></i>
                 </div>
                 <div class="menu-title">Export Database</div>
             </a>
