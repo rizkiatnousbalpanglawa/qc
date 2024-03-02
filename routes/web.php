@@ -93,6 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user-profile', [ProfilController::class, 'store']);
 
     Route::get('/user', [UserController::class, 'index']);
+    Route::delete('/user', [UserController::class, 'delete']);
     Route::get('/user/create', [UserController::class, 'create']);
     Route::post('/user/create', [UserController::class, 'store']);
 

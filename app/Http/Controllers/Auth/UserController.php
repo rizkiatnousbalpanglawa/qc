@@ -73,4 +73,12 @@ class UserController extends Controller
         toast('User berhasil diperbarui!', 'success');
         return back();
     }
+
+    public function delete(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->delete();
+        toast('User berhasil dihapus!', 'success');
+        return redirect('user');
+    }
 }
