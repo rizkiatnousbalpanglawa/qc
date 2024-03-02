@@ -27,8 +27,8 @@
                                 <div class="text-center">
                                     <img src="{{ asset('assets/images/avatars/esr.jpeg') }}" class="img-fluid"
                                         style="width: 60px">
-                                    <div class="mt-2 small">Target</div>
-                                    <div class="h6">60,000</div>
+                                    {{-- <div class="mt-2 small">Target</div>
+                                    <div class="h6">60,000</div> --}}
                                     <div class="mt-2 small">Realisasi</div>
                                     <div class="h6">
                                         @if (auth()->user()->role == 'admin')
