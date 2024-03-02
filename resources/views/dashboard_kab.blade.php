@@ -39,6 +39,17 @@
                                         @endif --}}
                                        
                                     </div>
+                                    <div class="mt-2 small">Suara Partai</div>
+                                    <div class="h6">
+                                        {{ $d1->sum('suara_partai') }}
+                                        {{-- @if (auth()->user()->role == 'admin')
+                                        {{ number_format($realisasi_esr) }}
+                                        @else --}}
+                                        {{-- {{ number_format($item->total_suara*6/7) }} --}}
+                                        {{-- 52,098
+                                        @endif --}}
+                                       
+                                    </div>
                                     {{-- <div class="h6">
                                         {{ number_format($realisasi_partai_esr) }}
                                     </div> --}}
