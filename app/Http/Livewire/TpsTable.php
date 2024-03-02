@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\District;
 use App\Models\Regency;
 use App\Models\SuaraCaleg;
+use App\Models\SuaraParpol;
 use App\Models\Tps;
 use App\Models\UploadC1;
 use App\Models\Village;
@@ -29,6 +30,7 @@ class TpsTable extends Component
         $query = Tps::with(['village', 'district', 'regency', 'lampiran', 'lampiran.caleg', 'suaraCaleg'])->orderBy('district_id')->orderBy('village_id');
         $queryEsr = SuaraCaleg::with('caleg');
         $queryYrk = SuaraCaleg::with('caleg');
+        $queryPartai = SuaraParpol::select('jumlah_suara');
         // $queryEsr = SuaraCaleg::where('caleg_id', '3');
         // $queryYrk = SuaraCaleg::where('caleg_id', '10');
 
@@ -44,6 +46,10 @@ class TpsTable extends Component
             $queryYrk->whereHas('regency', function ($queryYrk) {
                 $queryYrk->where('id', $this->searchKab);
             });
+
+            $queryPartai->whereHas('regency', function ($queryPartai) {
+                $queryPartai->where('id', $this->searchKab);
+            });
         }
 
         if ($this->searchKec) {
@@ -56,6 +62,9 @@ class TpsTable extends Component
             $queryYrk->whereHas('district', function ($queryYrk) {
                 $queryYrk->where('id', $this->searchKec);
             });
+            $queryPartai->whereHas('district', function ($queryPartai) {
+                $queryPartai->where('id', $this->searchKec);
+            });
         }
         if ($this->searchKel) {
             $query->whereHas('village', function ($query) {
@@ -66,6 +75,9 @@ class TpsTable extends Component
             });
             $queryYrk->whereHas('village', function ($queryYrk) {
                 $queryYrk->where('id', $this->searchKel);
+            });
+            $queryPartai->whereHas('village', function ($queryPartai) {
+                $queryPartai->where('id', $this->searchKel);
             });
         }
 
@@ -78,6 +90,9 @@ class TpsTable extends Component
 
             $queryYrk->whereHas('tps', function ($queryYrk) {
                 $queryYrk->where('nomor_tps', $this->searchTps);
+            });
+            $queryPartai->whereHas('tps', function ($queryPartai) {
+                $queryPartai->where('nomor_tps', $this->searchTps);
             });
         }
 
@@ -98,6 +113,9 @@ class TpsTable extends Component
                 $queryYrk->whereDoesntHave('lampiran', function ($queryYrk) {
                     $queryYrk->where('status',1);
                 });
+                $queryPartai->whereDoesntHave('lampiran', function ($queryPartai) {
+                    $queryPartai->where('status',1);
+                });
             }
             elseif ($this->searchData == 98) {
                 $query->whereDoesntHave('lampiran', function ($query) {
@@ -110,6 +128,9 @@ class TpsTable extends Component
 
                 $queryYrk->whereDoesntHave('lampiran', function ($queryYrk) {
                     $queryYrk->where('status',2);
+                });
+                $queryPartai->whereDoesntHave('lampiran', function ($queryPartai) {
+                    $queryPartai->where('status',2);
                 });
             }
             
@@ -125,6 +146,9 @@ class TpsTable extends Component
                 $queryYrk->whereHas('lampiran', function ($queryYrk) {
                     $queryYrk->where('status', $this->searchData);
                 });
+                $queryPartai->whereHas('lampiran', function ($queryPartai) {
+                    $queryPartai->where('status', $this->searchData);
+                });
             }
         }
 
@@ -135,7 +159,7 @@ class TpsTable extends Component
         // $data['totalEsr'] = $queryEsr->sum('jumlah_suara');
         $data['totalEsr'] = $queryEsr->get();
 
-        $data['totalYrk'] = $queryYrk->sum('jumlah_suara');
+        $data['suaraPartai'] = $queryPartai->sum('jumlah_suara');
 
         $data['kabupaten'] = Regency::whereHas('province', function ($query) {
             $query->where('name', 'SULAWESI SELATAN');

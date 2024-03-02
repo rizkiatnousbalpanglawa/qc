@@ -328,7 +328,7 @@
             @canany(['admin'])
             <div class="row">
                 <div class="col-lg-6">
-                    Total TPS : <span class="fw-bold">{{ number_format($totalTps) }}</span> <br>
+                    TOTAL TPS : <span class="fw-bold">{{ number_format($totalTps) }}</span> <br>
                     @foreach ($totalEsr->groupBy('caleg_id')->sortBy('caleg_id') as $calegId => $suaraCaleg)
                     {{ $suaraCaleg->first()->caleg->nama }} : <span class="fw-bold">{{
                         $suaraCaleg->sum('jumlah_suara') }}</span> <br>
@@ -336,6 +336,7 @@
                     {{--
                     Total Pemilih ESR : <span class="fw-bold">{{ number_format($totalEsr) }}</span> <br>
                     Total Pemilih YRK : <span class="fw-bold">{{ number_format($totalYrk) }}</span> --}}
+                    SUARA PARTAI : <span class="fw-bold">{{ number_format($suaraPartai) }}</span>
                 </div>
                 <div class="col-lg-6 d-flex align-items-center justify-content-center">
                     <!-- Tampilan untuk Desktop (lebar layar lebih dari 768px) -->
