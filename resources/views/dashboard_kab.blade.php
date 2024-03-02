@@ -197,7 +197,7 @@
                     <div class="card-body">
                         <div class="">
                             <span class="h6 border-5 border-start ps-1 border-warning">PEMILIH BERDASARKAN
-                                KECAMATAN</span>
+                                KABUPATEN / KOTA</span>
                         </div>
                         <hr class="my-1">
                         <table class="table table-sm">
