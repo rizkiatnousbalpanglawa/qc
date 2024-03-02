@@ -46,6 +46,10 @@
                                 <th>HAYARNA</th>
                                 <th>JUDAS</th>
                                 <th>PUTRI</th>
+                                <th>PARTAI</th>
+                                <th>SAH</th>
+                                <th>TDK SAH</th>
+                                <th>JUMLAH PEMILIH</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -60,9 +64,13 @@
                                 <td class="align-middle">{{ $item->suara_hayarna }}</td>
                                 <td class="align-middle">{{ $item->suara_judas }}</td>
                                 <td class="align-middle">{{ $item->suara_putri }}</td>
+                                <td class="align-middle">{{ $item->suara_partai }}</td>
+                                <td class="align-middle">{{ $item->suara_sah }}</td>
+                                <td class="align-middle">{{ $item->suara_tidak_sah }}</td>
+                                <td class="align-middle">{{ $item->jumlah_pemilih }}</td>
                                 <td class="align-middle">
-                                    <a href="{{ url('d1/edit/' . $item->id) }}" class="btn btn-primary">Edit</a>
-                                    <a href="{{ url('d1/hapus/' . $item->id) }}" class="btn btn-danger"
+                                    <a href="{{ url('d1/edit/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ url('d1/hapus/' . $item->id) }}" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Yakin Hapus?')">Hapus</a>
                                 </td>
                             </tr>
@@ -128,17 +136,6 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label">EVA STEVANY RATABA</label>
-                                        <input type="number" class="form-control" name="suara_esr" placeholder="SUARA EVA STEVANY RATABA">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">NICODEMUS BIRINGKANAE</label>
-                                        <input type="number" class="form-control" name="suara_nico" placeholder="SUARA NICODEMUS BIRINGKANAE">
-                                    </div>
-                                  
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
                                         <label for="" class="form-label">RUSDI MASSE</label>
                                         <input type="number" class="form-control" name="suara_rusdi" placeholder="SUARA RUSDI MASSE">
                                     </div>
@@ -147,16 +144,46 @@
                                         <input type="number" class="form-control" name="suara_aslam" placeholder="SUARA ASLAM PATONANGI">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label">HAYARNA HAKIM</label>
-                                        <input type="number" class="form-control" name="suara_hayarna" placeholder="SUARA HAYARNA HAKIM">
+                                        <label for="" class="form-label">EVA STEVANY RATABA</label>
+                                        <input type="number" class="form-control" name="suara_esr" placeholder="SUARA EVA STEVANY RATABA">
                                     </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">JUDAS AMIR</label>
                                         <input type="number" class="form-control" name="suara_judas" placeholder="SUARA JUDAS AMIR">
                                     </div>
+                                  
+                                </div>
+                                <div class="col-lg-6">
+                                   
+                                 
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">HAYARNA HAKIM</label>
+                                        <input type="number" class="form-control" name="suara_hayarna" placeholder="SUARA HAYARNA HAKIM">
+                                    </div>
+                                 
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">NICODEMUS BIRINGKANAE</label>
+                                        <input type="number" class="form-control" name="suara_nico" placeholder="SUARA NICODEMUS BIRINGKANAE">
+                                    </div>
                                     <div class="mb-3">
                                         <label for="" class="form-label">PUTRI DAKKA</label>
                                         <input type="number" class="form-control" name="suara_putri" placeholder="SUARA PUTRI DAKKA">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">SUARA PARTAI</label>
+                                        <input type="number" class="form-control" name="suara_partai" placeholder="SUARA PARTAI NASDEM">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">SUARA SAH</label>
+                                        <input type="number" class="form-control" name="suara_sah" placeholder="SUARA SAH">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">SUARA TIDAK SAH</label>
+                                        <input type="number" class="form-control" name="suara_tidak_sah" placeholder="SUARA TIDAK SAH">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">JUMLAH PEMILIH</label>
+                                        <input type="number" class="form-control" name="jumlah_pemilih" placeholder="JUMLAH PEMILIH">
                                     </div>
                                 </div>
                             </div>

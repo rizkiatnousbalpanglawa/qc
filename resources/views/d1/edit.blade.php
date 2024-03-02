@@ -72,19 +72,6 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">EVA STEVANY RATABA</label>
-                                    <input type="number" class="form-control" name="suara_esr"
-                                        value="{{ $d1->suara_esr }}" placeholder="SUARA EVA STEVANY RATABA">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="" class="form-label">NICODEMUS BIRINGKANAE</label>
-                                    <input type="number" class="form-control" name="suara_nico"
-                                        value="{{ $d1->suara_nico }}" placeholder="SUARA NICODEMUS BIRINGKANAE">
-                                </div>
-
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
                                     <label for="" class="form-label">RUSDI MASSE</label>
                                     <input type="number" class="form-control" name="suara_rusdi"
                                         value="{{ $d1->suara_rusdi }}" placeholder="SUARA RUSDI MASSE">
@@ -95,19 +82,48 @@
                                         value="{{ $d1->suara_aslam }}" placeholder="SUARA ASLAM PATONANGI">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="" class="form-label">HAYARNA HAKIM</label>
-                                    <input type="number" class="form-control" name="suara_hayarna"
-                                        value="{{ $d1->suara_hayarna }}" placeholder="SUARA HAYARNA HAKIM">
+                                    <label for="" class="form-label">EVA STEVANY RATABA</label>
+                                    <input type="number" class="form-control" name="suara_esr"
+                                        value="{{ $d1->suara_esr }}" placeholder="SUARA EVA STEVANY RATABA">
                                 </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">JUDAS AMIR</label>
                                     <input type="number" class="form-control" name="suara_judas"
                                         value="{{ $d1->suara_judas }}" placeholder="SUARA JUDAS AMIR">
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+                               
+                                <div class="mb-3">
+                                    <label for="" class="form-label">HAYARNA HAKIM</label>
+                                    <input type="number" class="form-control" name="suara_hayarna"
+                                        value="{{ $d1->suara_hayarna }}" placeholder="SUARA HAYARNA HAKIM">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">NICODEMUS BIRINGKANAE</label>
+                                    <input type="number" class="form-control" name="suara_nico"
+                                        value="{{ $d1->suara_nico }}" placeholder="SUARA NICODEMUS BIRINGKANAE">
+                                </div>
                                 <div class="mb-3">
                                     <label for="" class="form-label">PUTRI DAKKA</label>
                                     <input type="number" class="form-control" name="suara_putri"
                                         value="{{ $d1->suara_putri }}" placeholder="SUARA PUTRI DAKKA">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">SUARA PARTAI</label>
+                                    <input type="number" class="form-control" name="suara_partai" value="{{ $d1->suara_partai }}" placeholder="SUARA PARTAI NASDEM">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">SUARA SAH</label>
+                                    <input type="number" class="form-control" name="suara_sah" value="{{ $d1->suara_sah }}" placeholder="SUARA SAH">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">SUARA TIDAK SAH</label>
+                                    <input type="number" class="form-control" name="suara_tidak_sah" value="{{ $d1->suara_tidak_sah }}" placeholder="SUARA TIDAK SAH">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">JUMLAH PEMILIH</label>
+                                    <input type="number" class="form-control" name="jumlah_pemilih" value="{{ $d1->jumlah_pemilih }}" placeholder="JUMLAH PEMILIH">
                                 </div>
                             </div>
                         </div>

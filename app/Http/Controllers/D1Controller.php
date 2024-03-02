@@ -29,7 +29,12 @@ class D1Controller extends Controller
             'suara_aslam' => 'required',
             'suara_hayarna' => 'required',
             'suara_judas' => 'required',
-            'suara_putri' => 'required'
+            'suara_putri' => 'required',
+            'suara_partai' => 'required',
+            'suara_sah' => 'required',
+            'suara_tidak_sah' => 'required',
+            'jumlah_pemilih' => 'required',
+
         ]);
 
         if ($request->has('lampiran_c1')) {
@@ -67,7 +72,11 @@ class D1Controller extends Controller
             'suara_aslam' => 'required',
             'suara_hayarna' => 'required',
             'suara_judas' => 'required',
-            'suara_putri' => 'required'
+            'suara_putri' => 'required',
+            'suara_partai' => 'required',
+            'suara_sah' => 'required',
+            'suara_tidak_sah' => 'required',
+            'jumlah_pemilih' => 'required',
         ]);
 
         if ($request->has('lampiran_c1')) {
