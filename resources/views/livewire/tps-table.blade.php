@@ -102,7 +102,7 @@
                                 @forelse ($item->lampiran->where('status',1) as $items)
                                 {{ $items->caleg->where('caleg_id',3)->sum('jumlah_suara') }}
                                 @empty
-                                
+
                                 @endforelse
                             </td>
                             <td class="text-center align-middle">
@@ -154,7 +154,7 @@
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_c1)
                                 <!-- Button trigger modal -->
-                               <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdc{{ $items->id }}">
+                                <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdc{{ $items->id }}">
                                     DPRD PROV
                                 </a>
 
@@ -221,7 +221,7 @@
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_plano)
                                 <!-- Button trigger modal -->
-                               <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdp{{ $items->id }}">
+                                <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdp{{ $items->id }}">
                                     DPRD PROV
                                 </a>
 
@@ -289,7 +289,7 @@
                                 @foreach ($item->lampiran->where('status',2) as $items)
                                 @if ($items->lampiran_lokasi)
                                 <!-- Button trigger modal -->
-                               <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdlok{{ $items->id }}">
+                                <br> <a href="#" data-bs-toggle="modal" data-bs-target="#dprdlok{{ $items->id }}">
                                     DPRD PROV
                                 </a>
 
@@ -329,8 +329,13 @@
             <div class="row">
                 <div class="col-lg-6">
                     Total TPS : <span class="fw-bold">{{ number_format($totalTps) }}</span> <br>
+                    @foreach ($totalEsr->groupBy('caleg_id')->sortBy('caleg_id') as $calegId => $suaraCaleg)
+                    {{ $suaraCaleg->first()->caleg->nama }} : <span class="fw-bold">{{
+                        $suaraCaleg->sum('jumlah_suara') }}</span> <br>
+                    @endforeach
+                    {{--
                     Total Pemilih ESR : <span class="fw-bold">{{ number_format($totalEsr) }}</span> <br>
-                    Total Pemilih YRK : <span class="fw-bold">{{ number_format($totalYrk) }}</span>
+                    Total Pemilih YRK : <span class="fw-bold">{{ number_format($totalYrk) }}</span> --}}
                 </div>
                 <div class="col-lg-6 d-flex align-items-center justify-content-center">
                     <!-- Tampilan untuk Desktop (lebar layar lebih dari 768px) -->

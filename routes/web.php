@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\D1Controller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardKabController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Master\CalegController;
@@ -31,6 +32,7 @@ Route::post('/logout', LogoutController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/dashboard-kab', [DashboardKabController::class, 'index']);
     Route::get('/', [DashboardController::class, 'index']);
 
     // rekap tps

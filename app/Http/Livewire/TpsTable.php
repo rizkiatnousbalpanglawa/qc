@@ -27,8 +27,10 @@ class TpsTable extends Component
     public function render()
     {
         $query = Tps::with(['village', 'district', 'regency', 'lampiran', 'lampiran.caleg', 'suaraCaleg'])->orderBy('district_id')->orderBy('village_id');
-        $queryEsr = SuaraCaleg::where('caleg_id', '3');
-        $queryYrk = SuaraCaleg::where('caleg_id', '10');
+        $queryEsr = SuaraCaleg::with('caleg');
+        $queryYrk = SuaraCaleg::with('caleg');
+        // $queryEsr = SuaraCaleg::where('caleg_id', '3');
+        // $queryYrk = SuaraCaleg::where('caleg_id', '10');
 
         if ($this->searchKab) {
             $query->whereHas('regency', function ($query) {
@@ -78,12 +80,6 @@ class TpsTable extends Component
                 $queryYrk->where('nomor_tps', $this->searchTps);
             });
         }
-
-        // if ($this->searchKondisi) {
-        //     $query->doesntHave('lampiran');
-        //     $queryEsr->doesntHave('lampiran');
-        //     $queryYrk->doesntHave('lampiran');
-        // }
 
         if ($this->searchData) {
             if ($this->searchData == 99) {
@@ -136,7 +132,8 @@ class TpsTable extends Component
         $data['tps'] = $query->orderBy('nomor_tps')
             ->paginate('10');
 
-        $data['totalEsr'] = $queryEsr->sum('jumlah_suara');
+        // $data['totalEsr'] = $queryEsr->sum('jumlah_suara');
+        $data['totalEsr'] = $queryEsr->get();
 
         $data['totalYrk'] = $queryYrk->sum('jumlah_suara');
 

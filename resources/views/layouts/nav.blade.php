@@ -17,14 +17,14 @@
             </a>
 
         </li>
-        {{-- <li class="{{ $dashboard_is_active ?? '' }}">
-            <a href="{{ url('dashboard') }}">
+        <li class="{{ $dashboard_kab_is_active ?? '' }}">
+            <a href="{{ url('dashboard-kab') }}">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Dashboard_2</div>
             </a>
 
-        </li> --}}
+        </li>
 
         <li class="{{ $tps_is_active ?? '' }}">
             <a href="{{ url('tps') }}">
