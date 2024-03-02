@@ -51,7 +51,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label class="form-label">PLANO</label>
                                     <input type="file" name="lampiran_plano"
                                         class="form-control @error('lampiran_plano') is-invalid @enderror">
@@ -70,7 +70,7 @@
                                         {{ $message }}
                                     </div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="mb-3">
                                     <label for="" class="form-label">RUSDI MASSE</label>
                                     <input type="number" class="form-control" name="suara_rusdi"
@@ -91,14 +91,15 @@
                                     <input type="number" class="form-control" name="suara_judas"
                                         value="{{ $d1->suara_judas }}" placeholder="SUARA JUDAS AMIR">
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                               
                                 <div class="mb-3">
                                     <label for="" class="form-label">HAYARNA HAKIM</label>
                                     <input type="number" class="form-control" name="suara_hayarna"
                                         value="{{ $d1->suara_hayarna }}" placeholder="SUARA HAYARNA HAKIM">
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+                               
+                             
                                 <div class="mb-3">
                                     <label for="" class="form-label">NICODEMUS BIRINGKANAE</label>
                                     <input type="number" class="form-control" name="suara_nico"
